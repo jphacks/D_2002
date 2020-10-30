@@ -19,7 +19,8 @@
 ### Product Description
 ### 特長
 ### Advantages
-#### 1. Data Secure
+![architecture](./docs/advantages.jpeg)
+#### 1. Data Security
 - Blockchains are more difficult to change maliciously. 
 - Blockchains are maintained by a peer-to-peer network. The system keeps running even if one node goes down. 
 #### 2. Electric Payment
