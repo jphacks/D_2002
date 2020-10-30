@@ -12,16 +12,34 @@
 - We are master's students of Large-Scale Systems Management Lab., Nara Institute Science and Technology, Japan.
 ## 製品概要
 ## Product Outline
-### 背景(製品開発のきっかけ、課題等）
+### 背景(製品開発のきっかけ、課題等） 
 ### Background
-
+![architecture](./docs/honesty_stand.jpeg)
+Honesty stands are unmanned stores. As you can guess form the word "honestly", the buyers are expected to be "honest". 
+But sometimes, the merchandises or the cash from the sales are stolen by dishonest thieves. 
+The result shouldn't be a surprise to anyone. Billy Joel sings "Honesty is a such lonely word. Everyone is so untrue".
+From such a reason, some of owners of the honest stands use more strong chains of safes to protect the cash. 
+Now a more secure system is needed for honesty stands.
 ### 製品説明（具体的な製品の説明）
 ### Product Description
+Chained Box is a smart IoT box controlled by a blockchain. It enables to protect the the merchandises and the sales.
+Buyers can pay for the merchandise with electric payment (crypto currency).
+Sellers can receive the payment safely.
+And, since the sales history is stored in the blockchain, the sellers are free from bookkeeping.
+They can focus more efficiently on their main business. 
+
+### その他のユースケース
+### Other Use Cases
+![architecture](./docs/use_cases.jpeg)
+- Delivery
+- Sharing
+- Traceability
+
 ### 特長
 ### Advantages
 ![architecture](./docs/advantages.jpeg)
 #### 1. Data Security
-- Blockchains are more difficult to change maliciously. 
+- Blockchains are difficult to change maliciously. 
 - Blockchains are maintained by a peer-to-peer network. The system keeps running even if one node goes down. 
 #### 2. Electric Payment
 - You can pay with crypto-currency.
