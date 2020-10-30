@@ -76,11 +76,11 @@
 #### Devices
 * Hardware
     - Host (WS/WA/BC)
-        - ODROID N2: Single board computer with Arm 64-bit, OS (Ubuntu 20.04)
+        - ODROID-N2: Single board computer with Arm 64-bit, OS (Ubuntu 20.04)
     - Host (LC/BC)
         - Raspberry Pi: Single board computer with Arm 32-bit, OS (Raspbian buster 10)
     - Lock Actuator
-        - SR90: Servo motor
+        - SG-90: Servo motor
     - Battery (Raspberry Pi, Mini Monitor)
         - ELECOM Mobile Battery 6000mAh, 5V, 3A: Mobile Battery
         - Anker PowerCore 10000mAh, 5V, 2.4A: Mobile Battery
