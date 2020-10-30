@@ -4,6 +4,12 @@
 
 ![eye-catching](./docs/eye-catching.jpeg)
 
+## チーム名
+## Team Name
+### LSM-NAIST
+### 私たちについて
+### About Us
+- We are master's students of Large-Scale Systems Management Lab., Nara Institute Science and Technology, Japan.
 ## 製品概要
 ## Product Outline
 ### 背景(製品開発のきっかけ、課題等）
@@ -26,8 +32,8 @@
 ### Solutions
 ### 今後の展望
 ### Future Work
-### 【予定】注力したこと（こだわり等）
-### 【Planed】Focused Points
+### 【予定】 注力したこと（こだわり等）
+### 【Planned】 Focused Points
 * Make the Data Secure
     - We use the Ethereum blockchain. 
 * Make it Easy to Use
