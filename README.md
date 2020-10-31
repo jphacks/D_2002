@@ -28,6 +28,14 @@ Sellers can receive the payment safely.
 And, since the sales history is stored in the blockchain, the sellers are free from bookkeeping.
 They can focus more efficiently on their main business. 
 
+### 使用方法
+### How to Use
+You can use Chained Box as following steps.  
+1. Access our web page in your browser. (Chrome is strongly recommended.)  
+1. Lock or unlock your box in the menu page.
+
+
+
 ### その他のユースケース
 ### Other Use Cases
 ![architecture](./docs/use_cases.jpeg)
