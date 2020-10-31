@@ -1,20 +1,20 @@
 from django.views import generic
 from django.shortcuts import render
-from .lock_handler import lock
-from .lock_handler import unlock
-from .lock_handler import get_status
-# from lock_handler import getStatus, lock, unlock
-# Create your views here.
+
+from .lock_handler import MangeContract
 
 
 class Top(generic.TemplateView):
     template_name = 'top.html'
 
 
+manage_contract = MangeContract()
+
+
 def locking(request):
     template_name = 'lock.html'
 
-    status = lock()
+    status = manage_contract.lock()
     params = {
         'status': status,
     }
@@ -25,7 +25,7 @@ def locking(request):
 def menu(request):
     template_name = 'menu.html'
 
-    _status = get_status()
+    _status = manage_contract.get_status()
 
     params = {
         'status': _status,
@@ -37,7 +37,7 @@ def menu(request):
 def unlocking(request):
     template_name = 'unlock.html'
 
-    status = unlock()
+    status = manage_contract.unlock()
     params = {
         'status': status,
     }
@@ -47,7 +47,7 @@ def unlocking(request):
 
 def _get_status(request):
     template_name = 'status.html'
-    _status = get_status()
+    _status = manage_contract.get_status()
     params = {
         'status': _status,
     }
