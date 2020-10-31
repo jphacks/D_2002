@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    container_name: "web"
+    build: ./web
+    volumes:
+      - ./web:/work
+    expose:
+      - '8000'

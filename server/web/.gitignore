@@ -1,0 +1,8 @@
+.DS_Store
+.vscode/
+*__pycache__/
+db.sqlite3
+*migrations/
+/geth/data/geth/*
+!/geth/data/geth/static-nodes.json
+password.txt
