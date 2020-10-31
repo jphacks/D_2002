@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <a href="{% url 'main:status'%}" type="button" class="btn btn-dark btn-block">{{ status }}</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <a href="{% url 'main:unlock'%}" type="button" class="btn btn-primary btn-block">Unlock the Box</a>
+    </div>
+    <div class="col-md-6 mx-auto">
+        <a href="{% url 'main:lock'%}" type="button" class="btn btn-primary btn-block">Lock the Box</a>
+    </div>
+</div>
+{% endblock %}

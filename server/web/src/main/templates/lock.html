@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+
+<div class="row">
+        <p>Your box has been locked. </p>
+</div>
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <a href="{% url 'main:menu'%}" type="button" class="btn btn-secondary btn-block">Menu</a>
+    </div>
+</div>
+{% endblock %}
