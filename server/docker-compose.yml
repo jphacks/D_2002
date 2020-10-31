@@ -7,3 +7,17 @@ services:
       - ./web:/work
     expose:
       - '8000'
+
+
+  nginx:
+    container_name: "nginx"
+    build: ./nginx
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./web/src/static:/static
+    ports:
+      - '80:80'
+    depends_on:
+      - web
+    
