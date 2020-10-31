@@ -18,6 +18,7 @@ services:
       --networkid 32414 --miner.gasprice 0 --unlock 0 --nousb
       --password /geth/data/password.txt
       --mine --allow-insecure-unlock --nodiscover
+
   web:
     container_name: "web"
     build: ./web
@@ -25,7 +26,7 @@ services:
       - ./web:/work
     expose:
       - '8000'
-
+    command: uwsgi --socket :8000 --module app.wsgi --py-autoreload 1
 
   nginx:
     container_name: "nginx"
@@ -35,7 +36,7 @@ services:
       - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
       - ./web/src/static:/static
     ports:
-      - '80:80'
+      - '8080:80'
     depends_on:
       - web
     
