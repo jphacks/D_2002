@@ -1,18 +1,22 @@
 # Instauration Guide for Geth
 
-1. Create account
+## 1. Create account
+
 ```sh
 docker-compose run geth sh create_account.sh
 ```
 
-2. Create genesis.json
+## 2. Create genesis.json
+
 ```sh
 docker-compose run geth sh create_genesis_json.sh
 ```
+
 * Please specify a network name to administer (no spaces, hyphens or capital letters please)
 \> genesis
 
 * What would you like to do? (default = stats)
+
  1. Show network stats
  2. Configure new genesis
  3. Track new remote server
@@ -20,11 +24,13 @@ docker-compose run geth sh create_genesis_json.sh
 \> 2
 
 * What would you like to do? (default = create)
+
  1. Create new genesis from scratch
  2. Import already existing genesis
 \> 1
 
 * Which consensus engine to use? (default = clique)
+
  1. Ethash - proof-of-work
  2. Clique - proof-of-authority
 \> 2
@@ -52,11 +58,14 @@ Please input your address you generated former process.
 \> 32414
 
 * What would you like to do? (default = stats)
+
  1. Show network stats
  2. Manage existing genesis
  3. Track new remote server
  4. Deploy network components
 \> 2
+
+Next,
 
  1. Modify existing configurations
  2. Export genesis configurations
@@ -64,6 +73,15 @@ Please input your address you generated former process.
 \> 2
 
 Please quit with Ctrl+c.
-3. Create Genesis Block
 
-4.
+## 3. Create Genesis Block
+
+```sh
+docker-compose run geth sh init_geth.sh
+```
+
+## 4. Start Mining
+
+```sh
+docker-compose up geth
+```
