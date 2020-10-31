@@ -1,9 +1,20 @@
 version: '3'
 services:
-    geth:
-        container_name: 'geth'
-        build: ./geth
-        volumes:
-            - ./geth:/geth
-        command:
-            sh
+  geth:
+    container_name: 'geth'
+    build: ./geth
+    volumes:
+      - ./geth:/geth
+    ports:
+      - '30303:30303'
+      - '8545:8545'
+      - '8546:8546'
+    command: >
+      geth --datadir /geth/data --syncmode 'full' --port 30303
+      --http --http.addr '0.0.0.0' --http.corsdomain '*'
+      --http.vhosts '*' --http.port 8545 --http.api 'personal,eth,net,web3'
+      --ws --ws.addr "0.0.0.0" --ws.api 'eth,web3,personal,net'
+      --ws.origins '*' --ws.port 8546
+      --networkid 32414 --miner.gasprice 0 --unlock 0 --nousb
+      --password /geth/data/password.txt
+      --mine --allow-insecure-unlock --nodiscover
