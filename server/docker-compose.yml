@@ -4,6 +4,6 @@ services:
         container_name: 'geth'
         build: ./geth
         volumes:
-            - ./geth:geth
-        command: >
-            - geth --datadir data
+            - ./geth:/geth
+        command:
+            sh
