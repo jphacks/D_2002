@@ -11,5 +11,3 @@ RUN addgroup -g 1000 geth && adduser -u 1000 -G geth -s /bin/sh -D geth
 COPY --from=BUILDER /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=BUILDER /geth/build/bin/geth /usr/bin/
 EXPOSE 8545 8546 30303 30303/udp
-STOPSIGNAL SIGINT
-ENTRYPOINT []

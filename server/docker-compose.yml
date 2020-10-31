@@ -5,4 +5,5 @@ services:
         build: ./geth
         volumes:
             - ./geth:geth
-
+        command: >
+            - geth --datadir data
