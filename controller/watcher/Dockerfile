@@ -1,7 +1,5 @@
-FROM resin/rpi-raspbian:buster
-
-RUN apt-get update
-RUN apt-get install python3 python3-pip python3-dev python3-setuptools gcc make vim
+# Docker Hubにあるpythonイメージをベースにする
+FROM python:3.6
 
 # 環境変数を設定
 ENV PYTHONUNBUFFERED 1
