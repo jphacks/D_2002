@@ -29,14 +29,14 @@ services:
       --password /geth/data/password.txt
       --mine --allow-insecure-unlock --nodiscover
 
-    nginx:
-      container_name: "nginx"
-      build: ./nginx
-      volumes:
-        - ./nginx/conf:/etc/nginx/conf.d
-        - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
-      ports:
-        - '80:80'
-      depends_on:
-        - watcher
-        - geth
+  nginx:
+    container_name: "nginx"
+    build: ./nginx
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+    ports:
+      - '80:80'
+    depends_on:
+      - watcher
+      - geth
