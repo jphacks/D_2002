@@ -28,3 +28,15 @@ services:
       --networkid 32414 --miner.gasprice 0 --unlock 0 --nousb
       --password /geth/data/password.txt
       --mine --allow-insecure-unlock --nodiscover
+
+    nginx:
+      container_name: "nginx"
+      build: ./nginx
+      volumes:
+        - ./nginx/conf:/etc/nginx/conf.d
+        - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      ports:
+        - '80:80'
+      depends_on:
+        - watcher
+        - geth
