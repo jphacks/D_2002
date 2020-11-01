@@ -24,4 +24,5 @@ env:
 #     - docker-compose build
 
 script:
+    - pwd
     - bash ci_test.sh
