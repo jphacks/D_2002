@@ -1,4 +1,10 @@
 # CHAINED BOX
+Branch: master  
+![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=master)  
+Branch: develop_server  
+![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=develop_server)  
+Branch: develop_controller  
+![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=develop_controller)
 
 <!-- [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk) -->
 
@@ -15,11 +21,7 @@
 ### 背景(製品開発のきっかけ、課題等） 
 ### Background
 ![architecture](./docs/honesty_stand.jpeg)
-Honesty stands are unmanned stores. As you can guess form the word "honestly", the buyers are expected to be "honest". 
-But sometimes, the merchandises or the cash from the sales are stolen by dishonest thieves. 
-The result shouldn't be a surprise to anyone. Billy Joel sings "Honesty is a such lonely word. Everyone is so untrue".
-From such a reason, some of owners of the honest stands use more strong chains of safes to protect the cash. 
-Now a more secure system is needed for honesty stands.
+Honesty stands are unmanned stores. As you can guess form the word “honesty”, the buyers are expected to be “honest”. But sometimes, the merchandises or the cash from the sales are stolen by dishonest thieves. The result shouldn't be a surprise to anyone. Billy Joel sings "Honesty is a such lonely word. Everyone is so untrue". Protecting the merchandises and the cash with existing vending machines is one solution, but the price of them is high. Therefore, sales are often not worth the investment. Therefore, we propose a simple and low-cost smart IoT box named “Chained Box”. 
 ### 製品説明（具体的な製品の説明）
 ### Product Description
 Chained Box is a smart IoT box controlled by a blockchain. It enables to protect the the merchandises and the sales.

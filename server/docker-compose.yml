@@ -1,0 +1,42 @@
+version: '3'
+services:
+  geth:
+    container_name: 'geth'
+    build: ./geth
+    volumes:
+      - ./geth:/geth
+    ports:
+      - '30303:30303'
+      - '8545:8545'
+      - '8546:8546'
+    command: >
+      geth --datadir /geth/data --syncmode 'full' --port 30303
+      --http --http.addr '0.0.0.0' --http.corsdomain '*'
+      --http.vhosts '*' --http.port 8545 --http.api 'personal,eth,net,web3'
+      --ws --ws.addr "0.0.0.0" --ws.api 'eth,web3,personal,net'
+      --ws.origins '*' --ws.port 8546
+      --networkid 32414 --miner.gasprice 0 --unlock 0 --nousb
+      --password /geth/data/password.txt
+      --mine --allow-insecure-unlock --nodiscover
+
+  web:
+    container_name: "web"
+    build: ./web
+    volumes:
+      - ./web:/work
+    expose:
+      - '8000'
+    command: uwsgi --socket :8000 --module app.wsgi --py-autoreload 1
+
+  nginx:
+    container_name: "nginx"
+    build: ./nginx
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./web/src/static:/static
+    ports:
+      - '8080:80'
+    depends_on:
+      - web
+    

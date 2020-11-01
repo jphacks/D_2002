@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.navbar {
+  border-bottom: solid 5px #3D85C6;
+}
+
+.logo {
+  width: 250px;
+  margin-top: 14px;
+}
+
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4% 4%;
+}

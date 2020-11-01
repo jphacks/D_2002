@@ -1,0 +1,3 @@
+!.gitkeep
+/geth/data/*
+genesis*.json
