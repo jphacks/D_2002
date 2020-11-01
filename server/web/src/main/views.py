@@ -8,13 +8,13 @@ class Top(generic.TemplateView):
     template_name = 'top.html'
 
 
-manage_contract = MangeContract()
+contract_manager = MangeContract()
 
 
 def locking(request):
     template_name = 'lock.html'
 
-    status = manage_contract.lock()
+    status = contract_manager.lock()
     params = {
         'status': status,
     }
@@ -25,7 +25,7 @@ def locking(request):
 def menu(request):
     template_name = 'menu.html'
 
-    _status = manage_contract.get_status()
+    _status = contract_manager.get_status()
 
     params = {
         'status': _status,
@@ -37,7 +37,7 @@ def menu(request):
 def unlocking(request):
     template_name = 'unlock.html'
 
-    status = manage_contract.unlock()
+    status = contract_manager.unlock()
     params = {
         'status': status,
     }
@@ -47,7 +47,7 @@ def unlocking(request):
 
 def _get_status(request):
     template_name = 'status.html'
-    _status = manage_contract.get_status()
+    _status = contract_manager.get_status()
     params = {
         'status': _status,
     }
