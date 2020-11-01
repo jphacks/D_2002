@@ -1,14 +1,14 @@
 from django.views import generic
 from django.shortcuts import render
 
-from .lock_handler import MangeContract
+from .lock_handler import ContractManager
 
 
 class Top(generic.TemplateView):
     template_name = 'top.html'
 
 
-contract_manager = MangeContract()
+contract_manager = ContractManager()
 
 
 def locking(request):
@@ -53,3 +53,7 @@ def _get_status(request):
     }
 
     return render(request, template_name, params)
+
+
+class History(generic.TemplateView):
+    template_name = 'history.html'
