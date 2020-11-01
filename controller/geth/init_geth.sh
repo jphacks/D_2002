@@ -1,0 +1,1 @@
+geth --nousb init --datadir data genesis.json

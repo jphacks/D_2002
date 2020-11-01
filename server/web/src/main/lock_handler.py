@@ -7,7 +7,7 @@ from web3.contract import ConciseContract
 from web3.middleware import geth_poa_middleware
 
 
-class MangeContract:
+class ContractManager:
     def __init__(self):
         self.infura_url = 'http://geth:8545'
         self.abi_path = 'static/contract_info/abi.txt'

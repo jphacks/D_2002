@@ -1,4 +1,4 @@
-# Instauration Guide for Geth
+# Installation Guide for Geth Server
 
 ## 1. Create account
 
@@ -26,7 +26,7 @@ docker-compose run geth sh create_genesis_json.sh
 * What would you like to do? (default = create)
 
  1. Create new genesis from scratch
- 2. Import already existing genesis   
+ 2. Import already existing genesis  
 \> 1
 
 * Which consensus engine to use? (default = clique)
