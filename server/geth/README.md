@@ -1,4 +1,4 @@
-# Instauration Guide for Geth
+# Installation Guide for Geth Server
 
 ## 1. Create account
 
