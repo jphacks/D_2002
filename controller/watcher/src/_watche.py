@@ -1,6 +1,5 @@
 import time
 import json
-import cv2
 from threading import Thread
 
 from web3 import Web3
@@ -8,6 +7,9 @@ from web3.logs import STRICT, IGNORE, DISCARD, WARN
 from web3.middleware import geth_poa_middleware
 
 from control import servo_lock, servo_unlock
+
+import tkinter
+from PIL import Image, ImageTk
 
 ###############################################################################
 # Web3 関連
@@ -27,41 +29,51 @@ contract = w3.eth.contract(address=contractAddress, abi=abi)
 accounts = w3.eth.accounts
 ###############################################################################
 
-###############################################################################
-# Open CV 関連
-###############################################################################
-img_locked = cv2.imread('./image/display_locked.jpeg')
-img_locked = cv2.resize(img_locked, (640, 480))
 
-img_unlocked = cv2.imread('./image/display_unlocked.jpeg')
-img_unlocked = cv2.resize(img_unlocked, (640, 480))
+def show_image():
 
-cv2.namedWindow("window", cv2.WND_PROP_FULLSCREEN)
-cv2.setWindowProperty("window",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
-###############################################################################
+    global item, canvas
+
+    root = tkinter.Tk()
+    root.title('test')
+    root.geometry("1920x1080")
+    img = Image.open('image/display_locked.jpeg')
+    img = ImageTk.PhotoImage(img)
+    canvas = tkinter.Canvas(bg="black", width=1920, height=1080)
+    canvas.place(x=0, y=0)
+    item = canvas.create_image(0, 0, image=img, anchor=tkinter.NW)
+    root.mainloop()
+
 
 def handle_event(event):
     receipt = w3.eth.waitForTransactionReceipt(event['transactionHash'])
     locked = contract.events.Locked().processReceipt(receipt)
     if locked:
+        img = Image.open('image/display_locked.jpeg')
+        img = ImageTk.PhotoImage(img)
+        canvas.itemconfig(item, image=img)
         servo_lock()
-        cv2.imshow("window", img_locked)
         # print('locked')
+
     unlocked = contract.events.Unlocked().processReceipt(receipt)
     if unlocked:
+        img2 = Image.open('image/display_unlocked.jpeg')
+        img2 = ImageTk.PhotoImage(img2)
+        canvas.itemconfig(item, image=img2)
         servo_unlock()
-        cv2.imshow("window", display_unlocked)
         # print('unlocked')
+
 
 def log_loop(event_filter, poll_interval):
     while True:
         for event in event_filter.get_new_entries():
             print(event)
             handle_event(event)
-            if cv2.waitKey(poll_interval) & 0xFF == ord('q'):
-                break
             time.sleep(poll_interval)
 
-block_filter = w3.eth.filter({'fromBlock':'latest', 'address':contractAddress})
+
+thread1 = Thread(target=show_image)
+thread1.start()
+
+block_filter = w3.eth.filter({'fromBlock': 'latest', 'address': contractAddress})
 log_loop(block_filter, 2)
-cv2.destroyWindow(window_name)
