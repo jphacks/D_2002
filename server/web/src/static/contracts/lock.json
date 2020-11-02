@@ -1,12 +1,5 @@
 [
 	{
-		"inputs": [],
-		"name": "lock",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -22,13 +15,6 @@
 		"inputs": [],
 		"name": "Locked",
 		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "unlock",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -64,6 +50,13 @@
 	},
 	{
 		"inputs": [],
+		"name": "lock",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "price",
 		"outputs": [
 			{
@@ -86,6 +79,13 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "unlock",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	}
 ]

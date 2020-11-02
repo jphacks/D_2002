@@ -8,7 +8,7 @@ contract Lock {
     address payable public seller;
     address public buyer;
     
-    constructor(uint _price) public {
+    constructor(uint _price) {
         seller = msg.sender;
         price = _price;
         is_lock = true;
