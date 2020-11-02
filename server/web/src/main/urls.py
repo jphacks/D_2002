@@ -10,4 +10,5 @@ urlpatterns = [
     path('unlock/', views.unlocking, name='unlock'),
     path('lock/', views.locking, name='lock'),
     path('status/', views._get_status, name='status'),
+    path('history/', views.History.as_view(), name='history'),
 ]

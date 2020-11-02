@@ -53,3 +53,7 @@ def _get_status(request):
     }
 
     return render(request, template_name, params)
+
+
+class History(generic.TemplateView):
+    template_name = 'history.html'
