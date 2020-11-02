@@ -1,28 +1,37 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
+
 contract Lock {
-    bool private is_lock = false;
-
-    event Locked (
-        address indexed _from
-    );
-
-    function lock() public {
+    bool public is_lock;
+    uint public price;
+    address payable public seller;
+    address public buyer;
+    
+    constructor(uint _price) public {
+        seller = msg.sender;
+        price = _price;
         is_lock = true;
-        emit Locked(msg.sender);
+    }
+    
+    modifier condition(bool _condition) {
+        require(_condition);
+        _;
+    }
+    
+    event Locked();
+    
+    function lock() public {
+        emit Locked();
+        is_lock = true;
     }
 
-    event Unlocked (
-        address indexed _from
-    );
-
-    function unlock() public {
+    event Unlocked();
+    
+    function unlock() public condition(msg.value == price) payable {
+        emit Unlocked();
         is_lock = false;
-        emit Unlocked(msg.sender);
-    }
-
-    function status() public view returns (bool) {
-        return is_lock;
+        buyer = msg.sender;
+        seller.transfer(msg.value);
     }
 }
