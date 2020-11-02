@@ -1,7 +1,7 @@
 from django.views import generic
 from django.shortcuts import render
 
-from .lock_handler import ContractManager
+from .manager import ContractManager
 
 contract_manager = ContractManager()
 
