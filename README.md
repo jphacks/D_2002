@@ -2,7 +2,7 @@
 Branch: master  
 ![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=master)  
 Branch: develop_server  
-![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=develop_server)
+![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=develop_server)  
 Branch: develop_controller  
 ![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=develop_controller)
 
