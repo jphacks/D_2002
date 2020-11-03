@@ -17,7 +17,7 @@ class ContractManager:
         self.tx_hash = self.get_tx_hash()
 
         self.web3_instance = self.get_web3_instance()
-        self.get_contract_instance = self.get_contract_instance()
+        self.contract_instance = self.get_contract_instance()
 
     def get_abi(self):
         try:
@@ -42,12 +42,12 @@ class ContractManager:
     def get_web3_instance(self):
         try:
             w3 = Web3(Web3.HTTPProvider(self.infura_url))
-            w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+            # w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         except Exception:
             print('cannot load web3 instance')
             w3 = ''
 
-            return w3
+        return w3
 
     def get_contract_instance(self):
         try:
