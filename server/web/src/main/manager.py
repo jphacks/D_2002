@@ -10,8 +10,8 @@ from web3.middleware import geth_poa_middleware
 class ContractManager:
     def __init__(self):
         self.infura_url = 'http://geth:8545'
-        self.abi_path = 'static/contract_info/abi.txt'
-        self.tx_hash_path = 'static/contract_info/tx_hash.txt'
+        self.abi_path = 'static/contracts/lock.json'
+        self.tx_hash_path = 'static/contracts/tx_hash.txt'
 
         self.abi = self.get_abi()
         self.tx_hash = self.get_tx_hash()
@@ -62,15 +62,15 @@ class ContractManager:
 
     def get_status(self):
         try:
-            status = 'Locked' if self.contract_instance.status() else 'Unlocked'
+            status = 'Locked' if self.contract_instance.is_lock() else 'Unlocked'
         except Exception:
-            status = 'Unknown'
+            status = 'Unlocked'
 
         return status
 
     def unlock(self):
         try:
-            self.contract_instance.unlock(transact={'from': self.w3.eth.accounts[0]})
+            self.contract_instance.unlock(transact={'from': self.w3.eth.accounts[1]})
         except Exception:
             pass
 
