@@ -5,7 +5,11 @@ services:
     build: ./watcher
     volumes:
       - ./watcher:/work
-    command: python3 watch.py
+      -  -v $HOME/.Xauthority:/root/.Xauthority
+    command: python3 show.py
+    net: "host"
+    environment:
+      - DISPLAY=$DISPLAY
     privileged: true
     depends_on:
       - geth
