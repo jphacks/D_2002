@@ -17,6 +17,7 @@ Branch: develop
 ## 製品概要
 ## Product Outline
 ![product](./docs/product.jpeg)
+![product](./docs/mobile.jpeg)
 ### 背景(製品開発のきっかけ、課題等） 
 ### Background
 ![architecture](./docs/honesty_stand.jpeg)
