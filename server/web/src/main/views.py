@@ -25,10 +25,18 @@ def menu(request):
     template_name = 'menu.html'
 
     status = contract_manager.get_status()
+    
+    if status == 'Locked':
+        price = contract_manager.get_price()
 
-    params = {
-        'status': status,
-    }
+        params = {
+            'status': status,
+            'price': price,
+        }
+    else:
+        params = {
+            'status': status,
+        }
 
     return render(request, template_name, params)
 
