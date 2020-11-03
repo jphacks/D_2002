@@ -24,6 +24,7 @@ class ContractManager:
             with open(self.abi_path, 'r') as f:
                 abi = json.load(f)
         except Exception:
+            print('cannot import abi')
             abi = ''
 
         return abi
@@ -31,8 +32,9 @@ class ContractManager:
     def get_tx_hash(self):
         try:
             with open(self.tx_hash_path, 'r') as f:
-                tx_hash = json.load(f)
+                tx_hash = f.read()
         except Exception:
+            print('cannot import tx_hash')
             tx_hash = ''
 
         return tx_hash
@@ -42,6 +44,7 @@ class ContractManager:
             w3 = Web3(Web3.HTTPProvider(self.infura_url))
             w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         except Exception:
+            print('cannot load web3 instance')
             w3 = ''
 
             return w3
@@ -56,6 +59,7 @@ class ContractManager:
                 ContractFactoryClass=ConciseContract
             )
         except Exception:
+            print('cannot load contract instance')
             contract_instance = ''
 
         return contract_instance
@@ -64,7 +68,7 @@ class ContractManager:
         try:
             status = 'Locked' if self.contract_instance.is_lock() else 'Unlocked'
         except Exception:
-            status = 'Unlocked'
+            status = 'Unknown'
 
         return status
 
@@ -72,7 +76,7 @@ class ContractManager:
         try:
             self.contract_instance.unlock(transact={'from': self.w3.eth.accounts[1]})
         except Exception:
-            pass
+            print('cannoot unlock')
 
         return "unlocked"
 
@@ -80,6 +84,6 @@ class ContractManager:
         try:
             self.contract_instance.lock(transact={'from': self.w3.eth.accounts[0]})
         except Exception:
-            pass
+            print('cannot lock')
 
         return "locked"
