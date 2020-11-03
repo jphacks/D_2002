@@ -2,5 +2,4 @@
 genesis*.json
 db.sqlite3
 *migrations/
-/src/static/contract_info/*
-!/src/static/contract_info/lock.sol
+/src/static/contracts/tx_hash.txt

@@ -17,13 +17,14 @@ class ContractManager:
         self.tx_hash = self.get_tx_hash()
 
         self.web3_instance = self.get_web3_instance()
-        self.get_contract_instance = self.get_contract_instance()
+        self.contract_instance = self.get_contract_instance()
 
     def get_abi(self):
         try:
             with open(self.abi_path, 'r') as f:
                 abi = json.load(f)
         except Exception:
+            print('cannot import abi')
             abi = ''
 
         return abi
@@ -31,8 +32,9 @@ class ContractManager:
     def get_tx_hash(self):
         try:
             with open(self.tx_hash_path, 'r') as f:
-                tx_hash = json.load(f)
+                tx_hash = f.read()
         except Exception:
+            print('cannot import tx_hash')
             tx_hash = ''
 
         return tx_hash
@@ -42,9 +44,10 @@ class ContractManager:
             w3 = Web3(Web3.HTTPProvider(self.infura_url))
             w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         except Exception:
+            print('cannot load web3 instance')
             w3 = ''
 
-            return w3
+        return w3
 
     def get_contract_instance(self):
         try:
@@ -56,6 +59,7 @@ class ContractManager:
                 ContractFactoryClass=ConciseContract
             )
         except Exception:
+            print('cannot load contract instance')
             contract_instance = ''
 
         return contract_instance
@@ -70,17 +74,17 @@ class ContractManager:
 
     def unlock(self):
         try:
-            self.contract_instance.unlock(transact={'from': self.w3.eth.accounts[1]})
+            self.contract_instance.unlock(transact={'from': self.web3_instance.eth.accounts[1], 'value': self.get_price()})
         except Exception:
-            pass
+            print('cannoot unlock')
 
         return "unlocked"
 
     def lock(self):
         try:
-            self.contract_instance.lock(transact={'from': self.w3.eth.accounts[0]})
+            self.contract_instance.lock(transact={'from': self.web3_instance.eth.accounts[0]})
         except Exception:
-            pass
+            print('cannot lock')
 
         return "locked"
     
