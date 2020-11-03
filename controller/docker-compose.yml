@@ -7,7 +7,7 @@ services:
       - ./watcher:/work
       -  -v $HOME/.Xauthority:/root/.Xauthority
     command: python3 show.py
-    net: "host"
+    network_mode: "host"
     environment:
       - DISPLAY=$DISPLAY
     privileged: true
