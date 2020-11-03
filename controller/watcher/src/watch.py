@@ -28,10 +28,9 @@ def get_contract_address():
         ptint('cannot import tx_hash')
 
     try:
-        infura_url = 'http://geth:8545'
+        infura_url = 'http://127.0.0.1:8545/'
         w3 = Web3(Web3.HTTPProvider(infura_url))
         w3.middleware_onion.inject(geth_poa_middleware, layer=0)
-        print(vars(w3.eth))
     except:
         print('cannot load web3 instance')
 
@@ -44,7 +43,7 @@ def get_contract_address():
         print('cannot load contract instance')
         print(e)
     
-    return contract_address
+    return w3, contract, contract_address
 
 
 def show_image():
@@ -63,7 +62,7 @@ def show_image():
     root.mainloop()
 
 
-def handle_event(event):
+def handle_event(w3, contract, event):
     receipt = w3.eth.waitForTransactionReceipt(event['transactionHash'])
     locked = contract.events.Locked().processReceipt(receipt)
     if locked:
@@ -86,16 +85,15 @@ def main():
     thread1 = Thread(target=show_image)
     thread1.start()
     
+    w3, contract, contract_address = get_contract_address()
+    event_filter = w3.eth.filter({'fromBlock': 'latest', 'address': contract_address})
+    
     interval = 2
     while True:
-        try:
-            contract_address = get_contract_address()
-            event_filter = w3.eth.filter({'fromBlock': 'latest', 'address': contract_address})
-            for event in event_filter.get_new_entries():
-                handle_event(event)
-        except:
-            print('cannot get event')
-        time.sleep(interval)
+        for event in event_filter.get_new_entries():
+            print(event)
+            handle_event(w3, contract, event)
+            time.sleep(interval)
 
 
 if __name__ == '__main__':
