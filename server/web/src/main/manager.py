@@ -42,7 +42,7 @@ class ContractManager:
     def get_web3_instance(self):
         try:
             w3 = Web3(Web3.HTTPProvider(self.infura_url))
-            # w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+            w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         except Exception:
             print('cannot load web3 instance')
             w3 = ''
@@ -74,7 +74,7 @@ class ContractManager:
 
     def unlock(self):
         try:
-            self.contract_instance.unlock(transact={'from': self.w3.eth.accounts[1]})
+            self.contract_instance.unlock(transact={'from': self.web3_instance.eth.accounts[1], 'value': self.get_price()})
         except Exception:
             print('cannoot unlock')
 
@@ -82,7 +82,7 @@ class ContractManager:
 
     def lock(self):
         try:
-            self.contract_instance.lock(transact={'from': self.w3.eth.accounts[0]})
+            self.contract_instance.lock(transact={'from': self.web3_instance.eth.accounts[0]})
         except Exception:
             print('cannot lock')
 
