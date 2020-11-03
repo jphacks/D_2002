@@ -1,7 +1,7 @@
 # CHAINED BOX
 Branch: master  
 ![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=master)  
-Branch: develop
+Branch: develop  
 ![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=develop)  
 
 <!-- [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk) -->
