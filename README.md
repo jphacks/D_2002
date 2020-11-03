@@ -1,10 +1,8 @@
 # CHAINED BOX
 Branch: master  
 ![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=master)  
-Branch: develop_server  
-![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=develop_server)  
-Branch: develop_controller  
-![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=develop_controller)
+Branch: develop
+![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=develop)  
 
 <!-- [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk) -->
 
@@ -18,6 +16,7 @@ Branch: develop_controller
 - We are master's students of Large-Scale Systems Management Lab., Nara Institute Science and Technology, Japan.
 ## 製品概要
 ## Product Outline
+![product](./docs/product.jpeg)
 ### 背景(製品開発のきっかけ、課題等） 
 ### Background
 ![architecture](./docs/honesty_stand.jpeg)
@@ -110,7 +109,9 @@ You can use Chained Box as following steps.
         - Raspberry Pi: Single board computer with Arm 32-bit, OS (Raspbian buster 10)
     - Lock Actuator
         - SG-90: Servo motor
-    - Battery (Raspberry Pi, Mini Monitor)
+    - Display
+        - Longruner 7inch LCD Display 1024 * 600: Display  
+    - Battery (Raspberry Pi, Mini Display)
         - ELECOM Mobile Battery 6000mAh, 5V, 3A: Mobile Battery
         - Anker PowerCore 10000mAh, 5V, 2.4A: Mobile Battery
 
