@@ -87,3 +87,11 @@ class ContractManager:
             print('cannot lock')
 
         return "locked"
+    
+    def get_price(self):
+        try:
+            price = self.contract_instance.price() 
+        except Exception:
+            price = 1000
+
+        return price
