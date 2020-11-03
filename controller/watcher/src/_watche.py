@@ -36,10 +36,10 @@ def show_image():
 
     root = tkinter.Tk()
     root.attributes('-fullscreen', True)
-    root.bind('', lambda e: root.destroy())
+    # root.bind('', lambda e: root.destroy())
     root.title('Status')
     root.geometry("1920x1080")
-    img = Image.open('image/display_locked.jpeg')
+    img = Image.open('image/display_locked_qr.jpeg')
     img = ImageTk.PhotoImage(img)
     canvas = tkinter.Canvas(bg="black", width=1920, height=1080)
     canvas.place(x=0, y=0)
@@ -51,7 +51,7 @@ def handle_event(event):
     receipt = w3.eth.waitForTransactionReceipt(event['transactionHash'])
     locked = contract.events.Locked().processReceipt(receipt)
     if locked:
-        img = Image.open('image/display_locked.jpeg')
+        img = Image.open('image/display_locked_qr.jpeg')
         img = ImageTk.PhotoImage(img)
         canvas.itemconfig(item, image=img)
         servo_lock()
@@ -59,7 +59,7 @@ def handle_event(event):
 
     unlocked = contract.events.Unlocked().processReceipt(receipt)
     if unlocked:
-        img2 = Image.open('image/display_unlocked.jpeg')
+        img2 = Image.open('image/display_unlocked_qr.jpeg')
         img2 = ImageTk.PhotoImage(img2)
         canvas.itemconfig(item, image=img2)
         servo_unlock()
