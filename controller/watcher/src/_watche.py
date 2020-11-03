@@ -35,7 +35,9 @@ def show_image():
     global item, canvas
 
     root = tkinter.Tk()
-    root.title('test')
+    root.attributes('-fullscreen', True)
+    root.bind('', lambda e: root.destroy())
+    root.title('Status')
     root.geometry("1920x1080")
     img = Image.open('image/display_locked.jpeg')
     img = ImageTk.PhotoImage(img)
