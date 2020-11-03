@@ -64,7 +64,7 @@ class ContractManager:
         try:
             status = 'Locked' if self.contract_instance.is_lock() else 'Unlocked'
         except Exception:
-            status = 'Unlocked'
+            status = 'Unknown'
 
         return status
 
@@ -83,3 +83,11 @@ class ContractManager:
             pass
 
         return "locked"
+    
+    def get_price(self):
+        try:
+            price = self.contract_instance.price() 
+        except Exception:
+            price = 1000
+
+        return price
