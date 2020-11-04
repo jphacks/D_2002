@@ -1,6 +1,6 @@
 # CHAINED BOX
-- Wiki (Github)   
-    - ![wiki](https://img.shields.io/badge/wiki-writing-yellow)  
+- Wiki (Github)  
+    - [![wiki](https://img.shields.io/badge/wiki-writing-yellow)](https://github.com/jphacks/D_2002/wiki)
 - CI (Travis)
     - Branch: master  
         - ![Build Status](https://travis-ci.org/jphacks/D_2002.svg?branch=master)  
