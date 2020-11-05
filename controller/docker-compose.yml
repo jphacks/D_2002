@@ -5,7 +5,11 @@ services:
     build: ./watcher
     volumes:
       - ./watcher:/work
+      - $HOME/.Xauthority:/root/.Xauthority
     command: python3 watch.py
+    network_mode: "host"
+    environment:
+      - DISPLAY=$DISPLAY:0
     privileged: true
     depends_on:
       - geth
@@ -25,9 +29,9 @@ services:
       --http.vhosts '*' --http.port 8545 --http.api 'personal,eth,net,web3'
       --ws --ws.addr "0.0.0.0" --ws.api 'eth,web3,personal,net'
       --ws.origins '*' --ws.port 8546
-      --networkid 32414 --miner.gasprice 0 --unlock 0 --nousb
+      --networkid 32414 --miner.gasprice '0' --unlock 0 --nousb
       --password /geth/data/password.txt
-      --mine --allow-insecure-unlock --nodiscover
+      --allow-insecure-unlock --nodiscover
 
   nginx:
     container_name: "nginx"

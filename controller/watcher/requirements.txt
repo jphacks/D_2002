@@ -1,2 +1,3 @@
 rpi.gpio
 web3
+Pillow

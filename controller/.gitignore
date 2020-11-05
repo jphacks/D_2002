@@ -1,3 +1,4 @@
 !.gitkeep
 /geth/data/*
 genesis*.json
+watcher/src/contracts/tx_hash.txt
