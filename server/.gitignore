@@ -1,2 +1,5 @@
 /geth/data/*
 genesis*.json
+db.sqlite3
+*migrations/
+/src/static/contracts/tx_hash.txt

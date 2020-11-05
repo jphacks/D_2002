@@ -11,8 +11,6 @@ branches:
     only:
         - master
         - develop
-        - develop_server
-        - develop_controller
 
 env:
     - DOCKER_COMPOSE_VERSION : 1.25.4
