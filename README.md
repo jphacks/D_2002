@@ -161,15 +161,15 @@ We processed small plastic parts precisely and accurately.
 ### ハッカソンで開発した独自機能・技術
 ### Our Own Features Made in this Hackathon
 #### Payment Contract
-Kentaro Fujita wrote [lock.sol (on the Blockchain)](https://github.com/jphacks/D_2002/blob/master/server/web/src/static/contracts/lock.sol)  
+Kentaro Fujita wrote [lock.sol (on the Blockchain)](https://github.com/jphacks/D_2002/blob/master/server/web/src/static/contracts/lock.sol).    
 #### Implementation of Blockchain in Multiple Single Board Computers
-Kentaro Fujita wrote [geth (on the Raspberry Pi)](https://github.com/jphacks/D_2002/tree/master/controller/geth)  
-Kentaro Fujita wrote [geth (on the ODROID-N2)](https://github.com/jphacks/D_2002/tree/master/server/geth)  
+Kentaro Fujita wrote [geth (on the Raspberry Pi)](https://github.com/jphacks/D_2002/tree/master/controller/geth).  
+Kentaro Fujita wrote [geth (on the ODROID-N2)](https://github.com/jphacks/D_2002/tree/master/server/geth).  
 #### Forwarding the Video Output from a Docker Container to the Host Machine
-Takeaki Matsunaga wrote the l.68-72, l.76-80, l.85-86, and l.95-96 of [watch.py (on the Paspberry Pi)](https://github.com/jphacks/D_2002/blob/master/controller/watcher/src/watch.py)  
-Takeaki Matsunaga wrote the l.10-12 of [docker-compose.yml (on the Paspberry Pi)](https://github.com/jphacks/D_2002/blob/master/controller/docker-compose.yml)
+Takeaki Matsunaga wrote the L68-72, L76-80, L85-86, and L95-96 of [watch.py (on the Paspberry Pi)](https://github.com/jphacks/D_2002/blob/master/controller/watcher/src/watch.py).  
+Takeaki Matsunaga wrote the L10-12 of [docker-compose.yml (on the Paspberry Pi)](https://github.com/jphacks/D_2002/blob/master/controller/docker-compose.yml).
 #### Web-based User Interface
-Takeaki Matsunaga wrote [web (on the ODROID-N2)](https://github.com/jphacks/D_2002/tree/master/server/web)  
+Takeaki Matsunaga wrote [web (on the ODROID-N2)](https://github.com/jphacks/D_2002/tree/master/server/web).  
 #### Designing the Lock Mechanism
 
 ### 開発のタイムライン（履歴）
