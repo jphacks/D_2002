@@ -101,7 +101,7 @@ We made this README.md and the 90 sec pitch video in English to let the world kn
 ![architecture](./docs/architecture.jpeg)
 
 ### 活用した技術
-### Used Technologies
+### Technologies We Used
 #### Blockchain
 #### IoT with Single Board Computers
 #### Web Framework
