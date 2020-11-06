@@ -76,7 +76,7 @@ We gave the box cool looks. We changed its boring appearance by painting.
 #### 5. Make it Practical
 The lock mechanism has practical durability, adopting hard materials (metal and plastic). Plus, the mechanism is small to maximize the capacity of the box.
 #### 6. Make our Perspective Global
-We made this README.md and the 90 sec pitch in English to let the world know our product.
+We made this README.md and the 90 sec pitch video in English to let the world know our product.
 
 ### 今後の展望
 ### Future Work
