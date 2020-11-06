@@ -10,6 +10,8 @@
 <!-- [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk) -->
 
 ![eye-catching](./docs/eye-catching.jpeg)
+## 90 Sec. Pitch Video 
+[![JPHACKS 90 Sec. Pitch](http://img.youtube.com/vi/wg6M0W5arro/0.jpg)](http://www.youtube.com/watch?v=wg6M0W5arro "JPHACKS 90 Sec. Pitch")
 
 ## チーム名
 ## Team Name
