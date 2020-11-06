@@ -158,7 +158,7 @@ Product-level paint with strong base painting and finish coating
 We processed small plastic parts precisely and accurately.
 
 
-#### ハッカソンで開発した独自機能・技術
+### ハッカソンで開発した独自機能・技術
 ### Our Own Features Made in this Hackathon
 #### Payment Contract
 Kentaro Fujita wrote [lock.sol (on the Blockchain)](https://github.com/jphacks/D_2002/blob/master/server/web/src/static/contracts/lock.sol)  
@@ -171,6 +171,10 @@ Takeaki Matsunaga wrote the l.10-12 of [docker-compose.yml (on the Paspberry Pi)
 #### Web-based User Interface
 Takeaki Matsunaga wrote [web (on the ODROID-N2)](https://github.com/jphacks/D_2002/tree/master/server/web)  
 #### Designing the Lock Mechanism
+
+### 開発のタイムライン（履歴）
+### Development Timeline (History)
+Please check [the Development Timeline page](https://github.com/jphacks/D_2002/wiki/Development-Timeline) of the wiki.
 
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
 #### Applied Contents from our Research
