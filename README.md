@@ -74,7 +74,9 @@ We used single board computers to make the system simple and small. The features
 #### 4. Make the Box Beautiful
 We gave the box cool looks. We changed its boring appearance by painting. 
 #### 5. Make it Practical
-The lock mechanism has practical durability, adopting hard materials (metal and plastic). Plus, the mechanism is small to maximize the capacity of the box. 
+The lock mechanism has practical durability, adopting hard materials (metal and plastic). Plus, the mechanism is small to maximize the capacity of the box.
+#### 6. Make our Perspective Global
+We made this README.md and the 90 sec pitch in English to let the world know our product.
 
 ### 今後の展望
 ### Future Work
@@ -158,11 +160,14 @@ We processed small plastic parts precisely and accurately.
 
 #### ハッカソンで開発した独自機能・技術
 ### Our Own Features Made in this Hackathon
-* 独自で開発したものの内容をこちらに記載してください
-* 特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
 #### Payment Contract
+Kentaro Fujita wrote [lock.sol][https://github.com/jphacks/D_2002/blob/master/server/web/src/static/contracts/lock.sol]  
 #### Implementation of Blockchain in Multiple Single Board Computers
+Kentaro Fujita wrote [controller (Raspberry Pi)][https://github.com/jphacks/D_2002/tree/master/controller/geth]  
+Kentaro Fujita wrote [server (ODROID-N2)][https://github.com/jphacks/D_2002/tree/master/server/geth]  
 #### Forwarding the Video Output from a Docker Container to the Host Machine
+Takeaki Matsunaga wrote the l.68-72, l.76-80, l.85-86, and l.95-96 of [watch.py][https://github.com/jphacks/D_2002/blob/master/controller/watcher/src/watch.py]  
+Takeaki Matsunaga wrote the l.10-12 of [docker-compose.yml (controller)][https://github.com/jphacks/D_2002/blob/master/controller/docker-compose.yml]
 #### Designing the Lock Mechanism
 
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
