@@ -105,7 +105,7 @@ We made this README.md and the 90 sec pitch video in English to let the world kn
 #### Blockchain
 #### IoT with Single Board Computers
 #### Web Framework
-#### Virilization with Containers
+#### Virtualization with Containers
 #### Continuos Integration Tool
 
 #### フレームワーク・ライブラリ・モジュール
