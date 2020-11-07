@@ -181,11 +181,11 @@ Takeaki Matsunaga wrote the L10-12 of [docker-compose.yml (on the Paspberry Pi)]
 #### Web-based User Interface
 Takeaki Matsunaga wrote [web (on the ODROID-N2)](https://github.com/jphacks/D_2002/tree/master/server/web).  
 #### Designing the Lock Mechanism
-Seiya Tanaka wrote [readme.md](https://github.com/jphacks/D_2002/tree/master/hardware#ロック機構の開発).  
+Seiya Tanaka wrote [readme.md (hardware)](https://github.com/jphacks/D_2002/tree/master/hardware#ロック機構の開発).  
 
 ### 開発のタイムライン（履歴）
 ### Development Timeline (History)
-Please check [the Development Timeline page](https://github.com/jphacks/D_2002/wiki/Development-Timeline) of the wiki.
+Please check [the development timeline page](https://github.com/jphacks/D_2002/wiki/Development-Timeline) on the wiki.
 
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
 #### Applied Contents from our Research
