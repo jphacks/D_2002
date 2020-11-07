@@ -12,6 +12,8 @@
 ![eye-catching](./docs/eye-catching.jpeg)
 ## 90 Sec. Pitch Video 
 [![JPHACKS 90 Sec. Pitch](http://img.youtube.com/vi/wg6M0W5arro/0.jpg)](http://www.youtube.com/watch?v=wg6M0W5arro "JPHACKS 90 Sec. Pitch")
+## Promotion Video
+[![Chained Box Promo](http://img.youtube.com/vi/oBHsUKQccIk/0.jpg)](http://www.youtube.com/watch?v=oBHsUKQccIk "Chained Box Promo")
 
 ## チーム名
 ## Team Name
