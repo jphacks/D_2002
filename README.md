@@ -103,6 +103,7 @@ We made this README.md and the 90 sec pitch video in English to let the world kn
 ### システムの構成
 ### System Architecture
 ![architecture](./docs/system_architecture.jpeg)
+### 物理構成
 ### Physical Architecture
 ![architecture](./docs/physical_architecture.jpeg)
 
