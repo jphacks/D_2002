@@ -105,6 +105,8 @@ We made this README.md and the 90 sec pitch video in English to let the world kn
 ![architecture](./docs/system_architecture.jpeg)
 ### Physical Architecture
 ![architecture](./docs/physical_architecture.jpeg)
+### Box Component
+![box component](./docs/box_component.jpeg)
 
 ### 活用した技術
 ### Technologies We Used
