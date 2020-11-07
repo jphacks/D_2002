@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link ref="stylesheet" href="https://fonts.googleapis.com/css?family=Philosopher">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/top.css' %}">
+
+    <title>Chained Box</title>
+  </head>
+
+  <body>
+    <div id="home" class="big-bg">
+      <header class="page-header wrapper">
+        <h1><a href="#"><img class="logo" src="{% static 'image/logo-top.png' %}" alt="Chained Box トップ"></a><h1>
+        <nav>
+            <ul class="main-nav">
+                {% if user.is_authenticated %}
+                <li>
+                  <a class="nav-item nav-link" href="#">Menu</a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="#">Log-out</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">Log-in</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+      </header>
+
+      <div class="home-content wrapper">
+        <h2 class="page-title">Chained Box</h2>
+        <a class="button" href="{% url 'main:menu'%}">Menu</a>
+      </div><!-- /.home-content -->
+
+      <footer>
+        <p>LSM-NAIST</p>
+        <p href="https://www.freepik.com/vectors/background">Background image created by rawpixel.com - www.freepik.com</p>
+      </footer>
+      
+    </div><!-- /#home -->
+
+  </body>
+</html>

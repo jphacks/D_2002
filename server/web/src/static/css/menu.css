@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+/* 大きな画像
+-------------------------- */
+.big-bg {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+#home {
+  background-image: url(../image/menu.jpg);
+  min-height: 100vh;
+  background-color:rgba(255,255,255,0.5);
+  background-blend-mode:lighten;
+}
+
+.col-md-6 {
+  padding-top: 20px;
+}
+.col-md-3 {
+  padding-top: 20px;
+}
+
+
+body {
+  font-family: "Philosopher";
+}

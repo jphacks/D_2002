@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+{% if  status == 'Locked' %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <img src="{% static 'image/lock.png' %}" class="img-fluid" alt="Lock">
+        </div>
+        <div class="col-md-6 mx-auto">
+
+            <div class="text-center h4 alert alert-warning" role="alert">Status: Locked</div>
+            <div class="text-center h4 alert alert-info" role="alert">Price: {{ price }} wei</div>
+            <a href="{% url 'main:unlock'%}" type="button" class="btn btn-success btn-block">Unlock the Box</a>
+        </div>
+    </div>
+{% elif  status == 'Unlocked' %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <img src="{% static 'image/unlock.png' %}" class="img-fluid" alt="Unlock">
+        </div>
+        <div class="col-md-6 mx-auto">
+            <div class="text-center h4 alert alert-success" role="alert">Status: Unlocked</div>
+            <a href="{% url 'main:lock'%}" type="button" class="btn btn-warning btn-block">Lock the Box</a>
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <img src="{% static 'image/unknown.png' %}" class="img-fluid" alt="Lock">
+        </div>
+        <div class="col-md-6 mx-auto">
+            <div class="text-center h4 alert alert-dark" role="alert">Status: Unknown</div>
+            <div class="text-center h4 alert alert-light" role="alert">The requested resources are unavailable now.</div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
