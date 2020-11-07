@@ -102,7 +102,9 @@ We made this README.md and the 90 sec pitch video in English to let the world kn
 ## Development
 ### システムの構成
 ### System Architecture
-![architecture](./docs/architecture.jpeg)
+![architecture](./docs/system_architecture.jpeg)
+### Physical Architecture
+![architecture](./docs/physical_architecture.jpeg)
 
 ### 活用した技術
 ### Technologies We Used
