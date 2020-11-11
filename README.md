@@ -32,7 +32,7 @@
 Honesty stands are unmanned stores. As you can guess form the word “honesty”, the buyers are expected to be “honest”. But sometimes, the merchandises or the cash from the sales are stolen by dishonest thieves. The result shouldn't be a surprise to anyone. Billy Joel sings "Honesty is a such lonely word. Everyone is so untrue". ***Protecting the merchandises and the cash with existing vending machines is one solution, but the price of them is high. Therefore, buying an existing vending machine doesn't pay off in the end. Then, we propose a simple and low-cost smart IoT box named “Chained Box” for small business.***
 ### 製品説明（具体的な製品の説明）
 ### Product Description
-Chained Box is a smart IoT box controlled by a blockchain. It enables to protect the the merchandises and the sales.
+Chained Box is a smart IoT box controlled by a blockchain. It enables to protect the merchandises and the sales.
 Buyers can pay for the merchandise with electric payment (crypto-currency).
 Sellers can receive the payment safely.
 And, since the sales history is stored in the blockchain, the sellers are free from bookkeeping.
