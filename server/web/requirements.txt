@@ -1,3 +1,5 @@
 Django == 2.2.4
-web3
+django-stdimage==5.1.1
+Pillow==7.2.0
 uwsgi
+web3

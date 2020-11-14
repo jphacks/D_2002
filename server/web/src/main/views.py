@@ -1,7 +1,15 @@
 from django.views import generic
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
 from .manager import ContractManager
+
+from .forms import (
+    ProductRegistrationForm
+)
+from .models import (
+    Product
+)
 
 contract_manager = ContractManager()
 
@@ -64,3 +72,23 @@ def _get_status(request):
 
 class History(generic.TemplateView):
     template_name = 'history.html'
+
+
+# class ProductRegister(generic.TemplateView):
+#     template_name = 'product_register.html'
+
+
+class ProductRegister(generic.CreateView):
+    model = Product
+    form_class = ProductRegistrationForm
+    template_name = 'product_register.html'
+    success_url = reverse_lazy('main:product_register_done')
+
+    def form_valid(self, form):
+        form.instance.abi = "ここにabi(string)を代入"
+        form.instance.tx_hash = "ここにtx_hash(string)を代入"
+        return super(ProductRegister, self).form_valid(form)
+
+
+class ProductRegisterDone(generic.TemplateView):
+    template_name = 'product_register_done.html'
