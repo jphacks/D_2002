@@ -4,12 +4,39 @@
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 
 <div class="row">
-    <div class="col-md-12 mx-auto">
-        <div class="text-center h4 alert alert-success" role="alert">Your product has been registered</div>
+    <div class="col-md-6 mx-auto">
+        <img src="{{ MEDIA_URL }}{{ image }}" class="img-fluid" alt="Unlock">
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12 mx-auto">
+    <div class="col-md-6 mx-auto">
+        <div class="text-center h4 alert alert-success" role="alert">Your product has been registered</div>
+        
+        <div class="center">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>{{ price }}</td>
+                    </tr>
+                    <tr>
+                        <th>Amount</th>
+                        <td>{{ amount }}</td>
+                    </tr>
+                    <tr>
+                        <th>ABI</th>
+                        <td>{{ abi }}</td>
+                    </tr>
+                    <tr>
+                        <th>TX Hash</th>
+                        <td>{{ tx_hash }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <a href="{% url 'main:menu'%}" type="button" class="btn btn-secondary btn-block">Menu</a>
     </div>
 </div>

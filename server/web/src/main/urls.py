@@ -12,5 +12,5 @@ urlpatterns = [
     path('status/', views._get_status, name='status'),
     path('history/', views.History.as_view(), name='history'),
     path('product_register/', views.ProductRegister.as_view(), name='product_register'),
-    path('product_register/done/', views.ProductRegisterDone.as_view(), name='product_register_done'),
+    path('product_register/done/', views.product_register_done, name='product_register_done'),
 ]

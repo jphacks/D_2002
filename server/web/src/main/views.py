@@ -90,5 +90,33 @@ class ProductRegister(generic.CreateView):
         return super(ProductRegister, self).form_valid(form)
 
 
-class ProductRegisterDone(generic.TemplateView):
+class ProductRegisterDone(generic. DetailView):
+    model = Product
+    
+
+    def get_context_data(self):
+        product = Product.objects.last()
+        context = super().get_context_data(self)
+        context['name'] = product.name
+        context['amount'] = product.amount
+        context['price'] = product.price
+        context['image'] = product.image
+        context['abi'] = product.abi
+        context['tx_hash'] = product.tx_hash
+        return context
+
+
+def product_register_done(request):
     template_name = 'product_register_done.html'
+    product = Product.objects.last()
+    
+    params = {
+        'name' : product.name,
+        'amount' : product.amount,
+        'price': product.price,
+        'image' : product.image,
+        'abi' : product.abi,
+        'tx_hash': product.tx_hash,
+    }
+
+    return render(request, template_name, params)
