@@ -22,7 +22,7 @@ class Product(models.Model):
     
     image = StdImageField(
         verbose_name='image',
-        upload_to="image/product/",
+        upload_to="product",
         validators=[MinSizeValidator(300, 300), MaxSizeValidator(5760, 3840)],
         blank=True,
         variations={
