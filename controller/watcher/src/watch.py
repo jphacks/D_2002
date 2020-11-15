@@ -11,40 +11,6 @@ from control import servo_lock, servo_unlock
 import tkinter
 from PIL import Image, ImageTk
 
-time.sleep(10)
-
-
-def get_contract_address():
-    try:
-        with open('contracts/lock.json', 'r') as f:
-            abi = json.load(f)
-    except:
-        print('cannot import abi')
-
-    try:
-        with open('contracts/tx_hash.txt', 'r') as f:
-            tx_hash = f.read()
-    except:
-        ptint('cannot import tx_hash')
-
-    try:
-        infura_url = 'http://127.0.0.1:8545/'
-        w3 = Web3(Web3.HTTPProvider(infura_url))
-        w3.middleware_onion.inject(geth_poa_middleware, layer=0)
-    except:
-        print('cannot load web3 instance')
-
-    try:
-        tx_receipt = w3.eth.getTransactionReceipt(tx_hash)
-        contract_address = tx_receipt['contractAddress']
-        contract = w3.eth.contract(address=contract_address, abi=abi)
-        accounts = w3.eth.accounts
-    except Exception as e:
-        print('cannot load contract instance')
-        print(e)
-
-    return w3, contract, contract_address
-
 
 def show_image():
     global item, canvas
@@ -81,20 +47,63 @@ def handle_event(w3, contract, event):
         # print('unlocked')
 
 
+def get_contract_address():
+    try:
+        with open('contracts/lock.json', 'r') as f:
+            abi = json.load(f)
+    except:
+        print('cannot import abi')
+
+    try:
+        with open('contracts/tx_hash.txt', 'r') as f:
+            tx_hash = f.read()
+    except:
+        ptint('cannot import tx_hash')
+
+    try:
+        infura_url = 'http://127.0.0.1:8545/'
+        w3 = Web3(Web3.HTTPProvider(infura_url))
+        w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+    except:
+        w3 = ''
+        print('cannot load web3 instance')
+
+    try:
+        tx_receipt = w3.eth.getTransactionReceipt(tx_hash)
+        contract_address = tx_receipt['contractAddress']
+        contract = w3.eth.contract(address=contract_address, abi=abi)
+        accounts = w3.eth.accounts
+    except Exception as e:
+        contract_address = ''
+        contract = ''
+        print('cannot load contract instance')
+
+    return w3, contract, contract_address
+
+
+def get_contract():
+    interval = 2
+    while True:
+        w3, contract, contract_address = get_contract_address()
+        try:
+            event_filter = w3.eth.filter({'fromBlock': 'latest', 'address': contract_address})
+            while True:
+                for event in event_filter.get_new_entries():
+                    print(event)
+                    img = handle_event(w3, contract, event)
+                    canvas.itemconfig(item, image=img)
+                    time.sleep(interval)
+        except Exception as e:
+            print(e)
+        time.sleep(interval)
+
+
 def main():
     thread1 = Thread(target=show_image)
     thread1.start()
-
-    w3, contract, contract_address = get_contract_address()
-    event_filter = w3.eth.filter({'fromBlock': 'latest', 'address': contract_address})
-
-    interval = 2
-    while True:
-        for event in event_filter.get_new_entries():
-            print(event)
-            img = handle_event(w3, contract, event)
-            canvas.itemconfig(item, image=img)
-            time.sleep(interval)
+    
+    thread2 = Thread(target=get_contract)
+    thread2.start()
 
 
 if __name__ == '__main__':
