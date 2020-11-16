@@ -85,8 +85,8 @@ class ProductRegister(generic.CreateView):
     success_url = reverse_lazy('main:product_register_done')
 
     def form_valid(self, form):
-        form.instance.abi = "ここにabi(string)を代入"
-        form.instance.tx_hash = "ここにtx_hash(string)を代入"
+        tx_hash = contract_manager.deploy_contract(int(form.cleaned_data['price']))
+        form.instance.tx_hash = tx_hash
         return super(ProductRegister, self).form_valid(form)
 
 
@@ -101,7 +101,6 @@ class ProductRegisterDone(generic. DetailView):
         context['amount'] = product.amount
         context['price'] = product.price
         context['image'] = product.image
-        context['abi'] = product.abi
         context['tx_hash'] = product.tx_hash
         return context
 
@@ -115,7 +114,6 @@ def product_register_done(request):
         'amount' : product.amount,
         'price': product.price,
         'image' : product.image,
-        'abi' : product.abi,
         'tx_hash': product.tx_hash,
     }
 

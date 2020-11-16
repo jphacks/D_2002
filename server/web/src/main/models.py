@@ -2,6 +2,7 @@ from django.db import models
 from stdimage.models import StdImageField
 from stdimage.validators import MinSizeValidator, MaxSizeValidator
 
+
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(
@@ -30,12 +31,6 @@ class Product(models.Model):
             'small': (300, 300, True),
         },
     )
-
-    abi = models.CharField(
-        verbose_name='name',
-        max_length=1000,
-        blank=False,
-        null=False)
 
     tx_hash = models.CharField(
         verbose_name='name',

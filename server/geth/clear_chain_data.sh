@@ -1,1 +1,1 @@
-ls -a data/geth/ | grep -v -E "^static-nodes.json" | xargs rm -rf
+ls data/geth/ | grep -v -E "^static-nodes.json" | xargs rm -rf
