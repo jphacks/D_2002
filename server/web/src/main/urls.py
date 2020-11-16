@@ -1,8 +1,12 @@
 from django.urls import path
-
+from rest_framework import routers
 from . import views
+from .views import ProductViewSet
 
 app_name = 'main'
+
+router = routers.DefaultRouter()
+router.register(r'products', ProductViewSet)
 
 urlpatterns = [
     path('', views.Top.as_view(), name='top'),
