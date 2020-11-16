@@ -18,7 +18,7 @@ class ContractManager:
 
         self.abi = self.get_abi()
         self.bytecode = self.get_bytecode()
-        self.tx_hash = Product.objects.last().tx_hash 
+        self.tx_hash = self.get_tx_hash()
         self.web3_instance = self.get_web3_instance()
         self.contract_instance = self.get_contract_instance()
 
@@ -45,8 +45,7 @@ class ContractManager:
 
     def get_tx_hash(self):
         try:
-            with open(self.tx_hash_path, 'r') as f:
-                tx_hash = f.read()
+            tx_hash = Product.objects.last().tx_hash 
         except Exception:
             print('cannot import tx_hash')
             tx_hash = ''

@@ -24,6 +24,7 @@ services:
     build: ./web
     volumes:
       - ./web:/work
+      - ./web/src/static:/static
     expose:
       - '8000'
     command: uwsgi --socket :8000 --module app.wsgi --py-autoreload 1

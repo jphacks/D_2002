@@ -2,8 +2,10 @@ from django.views import generic
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
-from .manager import ContractManager
+from rest_framework import viewsets, filters
+from .serializer import ProductSerializer
 
+from .manager import ContractManager
 from .forms import (
     ProductRegistrationForm
 )
@@ -118,3 +120,8 @@ def product_register_done(request):
     }
 
     return render(request, template_name, params)
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all() # 最新のデータを取得
+    serializer_class = ProductSerializer
