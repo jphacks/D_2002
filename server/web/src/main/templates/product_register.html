@@ -10,7 +10,7 @@
             <form method="POST" class="post-form", enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p}}
-                <button type="submit" class="btn btn-outline-danger">Submit</button>
+                <button type="submit" name="deploy_button" class="btn btn-outline-danger">Submit</button>
             </form>
         </div>
     </div>

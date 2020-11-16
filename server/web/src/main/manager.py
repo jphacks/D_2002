@@ -6,16 +6,19 @@ from web3 import Web3
 from web3.contract import ConciseContract
 from web3.middleware import geth_poa_middleware
 
+from .models import Product
+
 
 class ContractManager:
     def __init__(self):
         self.infura_url = 'http://geth:8545'
-        self.abi_path = 'static/contracts/lock.json'
+        self.abi_path = 'static/contracts/lock_abi.json'
+        self.bytecode_path = 'static/contracts/lock_bytecode.json'
         self.tx_hash_path = 'static/contracts/tx_hash.txt'
 
         self.abi = self.get_abi()
-        self.tx_hash = self.get_tx_hash()
-
+        self.bytecode = self.get_bytecode()
+        self.tx_hash = Product.objects.last().tx_hash 
         self.web3_instance = self.get_web3_instance()
         self.contract_instance = self.get_contract_instance()
 
@@ -28,6 +31,17 @@ class ContractManager:
             abi = ''
 
         return abi
+        
+    def get_bytecode(self):
+        try:
+            with open(self.bytecode_path) as f:
+                bytecode = json.load(f)
+            bytecode = bytecode['object']
+        except Exception:
+            print('caanot import bytecode')
+            bytecode = ''
+
+        return bytecode
 
     def get_tx_hash(self):
         try:
@@ -38,11 +52,23 @@ class ContractManager:
             tx_hash = ''
 
         return tx_hash
+        
+    def deploy_contract(self, value):
+        try:
+            self.contract_instance = self.web3_instance.eth.contract(abi=self.abi, bytecode=self.bytecode)
+            self.tx_hash = self.contract_instance.constructor(value).transact().hex()
+            self.tx_recipt = self.web3_instance.eth.waitForTransactionReceipt(self.tx_hash)
+        except Exception as e:
+            print('cannot send transaction')
+            print(e)
+        
+        return self.tx_hash
 
     def get_web3_instance(self):
         try:
             w3 = Web3(Web3.HTTPProvider(self.infura_url))
             w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+            w3.eth.defaultAccount = w3.eth.accounts[0]
         except Exception:
             print('cannot load web3 instance')
             w3 = ''
