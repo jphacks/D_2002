@@ -5,10 +5,12 @@ services:
     build: ./watcher
     volumes:
       - ./watcher:/work
+      - /tmp/.X11-unix:/tmp/.X11-unix
       - $HOME/.Xauthority:/root/.Xauthority
     command: python3 watch.py
+    #network_mode: host
     environment:
-      - DISPLAY=$DISPLAY:0
+      - DISPLAY=$DISPLAY
     privileged: true
     depends_on:
       - geth

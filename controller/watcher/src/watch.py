@@ -54,14 +54,16 @@ def get_contract_address():
     except:
         print('cannot import abi')
 
+    # try:
+    #     with open('contracts/tx_hash.txt', 'r') as f:
+    #         tx_hash = f.read()
+    # except:
+    #     ptint('cannot import tx_hash')
+    
+    tx_hash = b'\x1c\xf204\xe2\xa0\x98\xaf`\xe3#:\x8fy\x93\xfd\\\x9ah\x8f\x143\xa6\x0b>D#\x06"\x16\x1d\xa4'
+    
     try:
-        with open('contracts/tx_hash.txt', 'r') as f:
-            tx_hash = f.read()
-    except:
-        ptint('cannot import tx_hash')
-
-    try:
-        infura_url = 'http://127.0.0.1:8545/'
+        infura_url = 'http://geth:8545/'
         w3 = Web3(Web3.HTTPProvider(infura_url))
         w3.middleware_onion.inject(geth_poa_middleware, layer=0)
     except:
