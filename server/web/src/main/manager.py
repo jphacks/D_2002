@@ -54,9 +54,14 @@ class ContractManager:
         
     def deploy_contract(self, value):
         try:
-            self.contract_instance = self.web3_instance.eth.contract(abi=self.abi, bytecode=self.bytecode)
-            self.tx_hash = self.contract_instance.constructor(value).transact().hex()
-            self.tx_recipt = self.web3_instance.eth.waitForTransactionReceipt(self.tx_hash)
+            contract = self.web3_instance.eth.contract(abi=self.abi, bytecode=self.bytecode)
+            self.tx_hash = contract.constructor(value).transact().hex()
+            tx_recipt = self.web3_instance.eth.waitForTransactionReceipt(self.tx_hash)
+            self.contract_instance = self.web3_instance.eth.contract(
+                abi=self.abi,
+                address=tx_receipt['contractAddress'],
+                ContractFactoryClass=ConciseContract
+            )
         except Exception as e:
             print('cannot send transaction')
             print(e)
