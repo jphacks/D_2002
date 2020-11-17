@@ -74,7 +74,7 @@ def get_contract_address():
     #     ptint('cannot import tx_hash')
     
     try:
-        url = "http://192.168.2.1:8080/api/products"
+        url = "http://192.168.10.15:8080/api/products"
         products_get = requests.get(url)
         product_dict = products_get.json()[-1] #最新のレコードを辞書型で取得
         image_url = product_dict['image'] #imageのURLを取得
