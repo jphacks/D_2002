@@ -11,6 +11,11 @@ from control import servo_lock, servo_unlock
 import tkinter
 from PIL import Image, ImageTk
 
+import urllib.request
+import io
+import requests
+import json
+
 
 def show_image():
     global item, canvas
@@ -20,7 +25,7 @@ def show_image():
     # root.bind('', lambda e: root.destroy())
     root.title('Status')
     root.geometry("1920x1080")
-    img = Image.open('image/display_locked_qr_demo.jpeg')
+    img = Image.open('image/display_starting.jpeg')
     img = ImageTk.PhotoImage(img)
     canvas = tkinter.Canvas(bg="black", width=1920, height=1080)
     canvas.place(x=0, y=0)
@@ -28,14 +33,22 @@ def show_image():
     root.mainloop()
 
 
-def handle_event(w3, contract, event):
+def handle_event(w3, contract, event, image_url):
     receipt = w3.eth.waitForTransactionReceipt(event['transactionHash'])
     locked = contract.events.Locked().processReceipt(receipt)
     if locked:
-        img = Image.open('image/display_locked_qr_demo.jpeg')
-        img = ImageTk.PhotoImage(img)
-        servo_lock()
-        return img
+        try:
+            img_read = urllib.request.urlopen(image_url).read()
+            img_bin = io.BytesIO(img_read)
+            img = Image.open(img_bin)
+            img = ImageTk.PhotoImage(img)
+            servo_lock()
+            return img
+        except:
+            img = Image.open('image/display_locked_qr_demo.jpeg')
+            img = ImageTk.PhotoImage(img)
+            servo_lock()
+            return img
         # print('locked')
 
     unlocked = contract.events.Unlocked().processReceipt(receipt)
@@ -60,7 +73,19 @@ def get_contract_address():
     # except:
     #     ptint('cannot import tx_hash')
     
-    tx_hash = b'\x1c\xf204\xe2\xa0\x98\xaf`\xe3#:\x8fy\x93\xfd\\\x9ah\x8f\x143\xa6\x0b>D#\x06"\x16\x1d\xa4'
+    try:
+        url = "http://192.168.2.1:8080/api/products"
+        products_get = requests.get(url)
+        product_dict = products_get.json()[-1] #最新のレコードを辞書型で取得
+        image_url = product_dict['image'] #imageのURLを取得
+        tx_hash = product_dict['tx_hash'] #tx_hashを取得
+    except:
+        product_dict = {
+            'image':'',
+            'tx_hash':'',
+            }
+        tx_hash = product_dict['tx_hash']
+        image_url = product_dict['image']
     
     try:
         infura_url = 'http://geth:8545/'
@@ -80,19 +105,19 @@ def get_contract_address():
         contract = ''
         print('cannot load contract instance')
 
-    return w3, contract, contract_address
+    return w3, contract, contract_address, image_url
 
 
 def get_contract():
     interval = 2
     while True:
-        w3, contract, contract_address = get_contract_address()
+        w3, contract, contract_address, image_url = get_contract_address()
         try:
             event_filter = w3.eth.filter({'fromBlock': 'latest', 'address': contract_address})
             while True:
                 for event in event_filter.get_new_entries():
                     print(event)
-                    img = handle_event(w3, contract, event)
+                    img = handle_event(w3, contract, event, image_url)
                     canvas.itemconfig(item, image=img)
                     time.sleep(interval)
         except Exception as e:

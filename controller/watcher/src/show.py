@@ -3,6 +3,10 @@ import tkinter
 from PIL import Image, ImageTk
 import threading
 import time
+import urllib.request
+import io
+import requests
+import json
  
 def show_image():
 
@@ -25,7 +29,18 @@ thread1 = threading.Thread(target=show_image)
 thread1.start()
  
 while(True):
-    img2 = Image.open('image/display_unlocked_qr.jpeg')
+    url = "http://192.168.10.15:8080/api/products"
+
+    products_get = requests.get(url)
+
+    product_dict = products_get.json()[-1] #最新のレコードを辞書型で取得
+    image_url = product_dict['image'] #imageのURLを取得
+    img_read = urllib.request.urlopen(image_url).read()
+    img_bin = io.BytesIO(img_read)
+
+    img2 = Image.open(img_bin)  # PILで開く
+
+    # img2 = Image.open('image/display_unlocked_qr.jpeg')
     img2 = ImageTk.PhotoImage(img2)
     time.sleep(3) 
     
