@@ -17,6 +17,8 @@ import requests
 import json
 
 
+is_locked = True
+
 def show_image():
     global canvas, item, show_img
 
@@ -27,42 +29,11 @@ def show_image():
     root.geometry("1920x1080")
     img = Image.open('image/display_starting.jpeg')
     show_img = ImageTk.PhotoImage(img)
+    
     canvas = tkinter.Canvas(bg="black", width=1920, height=1080)
     canvas.place(x=0, y=0)
     item = canvas.create_image(0, 0, image=show_img, anchor=tkinter.NW)
     root.mainloop()
-
-
-def handle_event(w3, contract, event, image_url):
-    global canvs, item, show_img
-    
-    receipt = w3.eth.getTransactionReceipt(event['transactionHash'])
-    locked = contract.events.Locked().processReceipt(receipt)
-    if locked:
-        try:
-            img_read = urllib.request.urlopen(image_url).read()
-            img_bin = io.BytesIO(img_read)
-            img = Image.open(img_bin)
-            show_img = ImageTk.PhotoImage(img)
-            canvas.itemconfig(item, image=show_img)
-            servo_lock()
-            # return img
-        except Exception as e:
-            img = Image.open('image/display_locked_qr_demo.jpeg')
-            show_img = ImageTk.PhotoImage(img)
-            canvas.itemconfig(item, image=show_img)
-            servo_lock()
-            print(e)
-            # return img
-        # print('locked')
-
-    unlocked = contract.events.Unlocked().processReceipt(receipt)
-    if unlocked:
-        img = Image.open('image/display_unlocked_qr_demo.jpeg')
-        show_img = ImageTk.PhotoImage(img)
-        canvas.itemconfig(item, image=show_img)
-        servo_unlock()
-        # print('unlocked')
 
 
 def get_contract_address():
@@ -94,8 +65,10 @@ def get_contract_address():
         img_read = urllib.request.urlopen(image_url).read()
         img_bin = io.BytesIO(img_read)
         img = Image.open(img_bin)
-        show_img = ImageTk.PhotoImage(img)
-        canvas.itemconfig(item, image=show_img)
+        tmp_img = ImageTk.PhotoImage(img)
+        if show_img != tmp_img and is_locked:
+            canvas.itemconfig(item, image=tmp_img)
+            show_img = tmp_img
     except Exception as e:
         image_url = ''
         print('cannot get image_url')
@@ -119,31 +92,73 @@ def get_contract_address():
         print('cannot load contract instance')
 
     return w3, contract, contract_address, image_url
+        
+
+def search_contract():
+    global w3, contract, contract_address, image_url
+
+    while True:
+        w3, contract, contract_address, image_url = get_contract_address()
+        time.sleep(2)
 
 
-def get_contract():
+def handle_event(event):
+    global canvs, item, show_img, image_url, is_locked
+    
+    receipt = w3.eth.getTransactionReceipt(event['transactionHash'])
+    locked = contract.events.Locked().processReceipt(receipt)
+    if locked:
+        try:
+            img_read = urllib.request.urlopen(image_url).read()
+            img_bin = io.BytesIO(img_read)
+            img = Image.open(img_bin)
+            show_img = ImageTk.PhotoImage(img)
+            canvas.itemconfig(item, image=show_img)
+            is_locked = True
+            servo_lock()
+        except Exception as e:
+            img = Image.open('image/display_locked_qr_demo.jpeg')
+            show_img = ImageTk.PhotoImage(img)
+            canvas.itemconfig(item, image=show_img)
+            servo_lock()
+            print(e)
+        # print('locked')
+
+    unlocked = contract.events.Unlocked().processReceipt(receipt)
+    if unlocked:
+        img = Image.open('image/display_unlocked_qr_demo.jpeg')
+        show_img = ImageTk.PhotoImage(img)
+        canvas.itemconfig(item, image=show_img)
+        is_locked = False
+        servo_unlock()
+        # print('unlocked')
+
+
+def get_event():
+    global w3, contract_address
     interval = 2
     while True:
-        print('next event')
-        w3, contract, contract_address, image_url = get_contract_address()
         try:
             event_filter = w3.eth.filter({'fromBlock': 'latest', 'address': contract_address})
             while True:
                 for event in event_filter.get_new_entries():
                     print(event)
-                    handle_event(w3, contract, event, image_url)
+                    handle_event(event)
                     time.sleep(interval)
         except Exception as e:
             print(f'{e} => search next event')
         time.sleep(interval)
-
+        
 
 def main():
     thread1 = Thread(target=show_image)
     thread1.start()
     
-    thread2 = Thread(target=get_contract)
+    thread2 = Thread(target=search_contract)
     thread2.start()
+    
+    thread3 = Thread(target=get_event)
+    thread3.start()
 
 
 if __name__ == '__main__':
