@@ -5,16 +5,25 @@ services:
     build: ./watcher
     volumes:
       - ./watcher:/work
+      - ./watcher/src/voices:/usr/share/hts-voice/
       - /tmp/.X11-unix:/tmp/.X11-unix
       - $HOME/.Xauthority:/root/.Xauthority
+      - /run/user/1000/pulse/native:/pulse/native
+      - $HOME/.config/pulse/cookie:/pulse/cookie
+      - ./watcher/conf/client.conf:/root/.config/pulse/client.conf
+      - ./watcher/conf/default.pa:/root/.pulse/default.pa
     command: python3 watch.py
     #network_mode: host
     environment:
       - DISPLAY=:0.0
+      - PULSE_SERVER=/pulse/native
+      - PULSE_COOKIE=/pulse/cookie
+    # devices:
+    #   - /dev/snd:/dev/snd
     privileged: true
     depends_on:
       - geth
-      
+
   geth:
     container_name: "geth"
     build: ./geth

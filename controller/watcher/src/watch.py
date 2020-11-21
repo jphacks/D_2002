@@ -1,5 +1,7 @@
+import os
 import time
 import json
+import subprocess
 from threading import Thread
 
 from web3 import Web3
@@ -35,9 +37,41 @@ def show_image():
     item = canvas.create_image(0, 0, image=show_img, anchor=tkinter.NW)
     root.mainloop()
 
+def test_play_voice(text):
+    open_jtalk = ['open_jtalk']
+    mech = ['-x', '/var/lib/mecab/dic/open-jtalk/naist-jdic']
+    htsvoice = ['-m', '/usr/share/hts-voice/mei_normal.htsvoice']
+    speed = ['-r', '1.0']
+    outwav = ['-ow', 'output.wav']
+    cmd = open_jtalk + mech + htsvoice + speed + outwav
+    while True:
+        subprocess.run(cmd, input=text.encode())
+        aplay = ['aplay', '-q', 'output.wav']
+        wr = subprocess.Popen(aplay)
+        wr.wait()
+        time.sleep(5)
+
+
+def play_voice():
+    global intro_text
+
+    open_jtalk = ['open_jtalk']
+    mech = ['-x', '/var/lib/mecab/dic/open-jtalk/naist-jdic']
+    htsvoice = ['-m', '/usr/share/hts-voice/mei_normal.htsvoice']
+    speed = ['-r', '1.0']
+    outwav = ['-ow', 'output.wav']
+    cmd = open_jtalk + mech + htsvoice + speed + outwav
+    while True:
+        if intro_text:
+            subprocess.run(cmd, input=intro_text.encode())
+            aplay = ['aplay', '-q', 'output.wav']
+            wr = subprocess.Popen(aplay)
+            wr.wait()
+            time.sleep(3)
+
 
 def get_contract_address():
-    global canvas, item, show_img
+    global canvas, item, show_img, intro_text
     try:
         with open('contracts/lock.json', 'r') as f:
             abi = json.load(f)
@@ -51,13 +85,20 @@ def get_contract_address():
         product_dict = products_get.json()[-1] #最新のレコードを辞書型で取得
     except Exception as e:
         print('cannot connect to the dataset api')
-    
+
     #tx_hashを取得
     try:
         tx_hash = product_dict['tx_hash']
     except:
         tx_hash = ''
         print('cannot get tx_hash')
+        
+    # 紹介文を取得
+    try:
+        intro_text = product_dict['intro']
+    except:
+        intro_text = ''
+        print('cannot get introduction')
 
     #imageのURLを取得
     try:        
@@ -72,7 +113,7 @@ def get_contract_address():
     except Exception as e:
         image_url = ''
         print('cannot get image_url')
-            
+
     try:
         infura_url = 'http://geth:8545/'
         w3 = Web3(Web3.HTTPProvider(infura_url))
@@ -157,8 +198,11 @@ def main():
     thread2 = Thread(target=search_contract)
     thread2.start()
     
-    thread3 = Thread(target=get_event)
+    thread3 = Thread(target=play_voice)
     thread3.start()
+    
+    thread4 = Thread(target=get_event)
+    thread4.start()
 
 
 if __name__ == '__main__':
