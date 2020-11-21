@@ -62,12 +62,16 @@ def play_voice():
     outwav = ['-ow', 'output.wav']
     cmd = open_jtalk + mech + htsvoice + speed + outwav
     while True:
-        if intro_text:
-            subprocess.run(cmd, input=intro_text.encode())
-            aplay = ['aplay', '-q', 'output.wav']
-            wr = subprocess.Popen(aplay)
-            wr.wait()
-            time.sleep(3)
+        try:
+            if intro_text:
+                print(intro_text)
+                subprocess.run(cmd, input=intro_text.encode())
+                aplay = ['aplay', '-q', 'output.wav']
+                wr = subprocess.Popen(aplay)
+                wr.wait()
+        except Exception as e:
+            print(e)
+        time.sleep(3)
 
 
 def get_contract_address():
