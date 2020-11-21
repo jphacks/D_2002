@@ -21,6 +21,13 @@ class Product(models.Model):
         blank=False,
         null=False)
     
+    intro = models.CharField(
+        verbose_name='intro',
+        max_length=200,
+        blank=True,
+        null=True
+    )
+
     image = StdImageField(
         verbose_name='image',
         upload_to="product",

@@ -102,6 +102,7 @@ class ProductRegisterDone(generic. DetailView):
         context['name'] = product.name
         context['amount'] = product.amount
         context['price'] = product.price
+        context['intro'] = product.intro
         context['image'] = product.image
         context['tx_hash'] = product.tx_hash
         return context
@@ -115,6 +116,7 @@ def product_register_done(request):
         'name' : product.name,
         'amount' : product.amount,
         'price': product.price,
+        'intro': product.intro,
         'image' : product.image,
         'tx_hash': product.tx_hash,
     }
