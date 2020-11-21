@@ -1,0 +1,3 @@
+[submodule "controller/talk_api"]
+	path = controller/talk_api
+	url = https://github.com/u6k/open_jtalk-docker.git

@@ -14,5 +14,13 @@ RUN apt-get -y install vim
 RUN pip3 install -U pip
 RUN pip3 install -r requirements.txt
 
+RUN apt-get -y install open-jtalk
+RUN apt-get -y install open-jtalk-mecab-naist-jdic
+RUN apt-get -y install alsa-utils socat pulseaudio
+
+ADD setup.sh /work/
+RUN chmod a+x setup.sh
+CMD ["./setup.sh"]
+
 # work/srcディレクトリをワークディレクトリに設定
 WORKDIR /work/src
