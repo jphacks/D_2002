@@ -10,27 +10,29 @@
     <div class="col-md-6 mx-auto">
         <div class="text-center h4 alert alert-success" role="alert">Your product has been registered</div>
         
-        <div class="center">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <td>{{ name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Price</th>
-                        <td>{{ price }}</td>
-                    </tr>
-                    <tr>
-                        <th>Amount</th>
-                        <td>{{ amount }}</td>
-                    </tr>
-                    <tr>
-                        <th>TX Hash</th>
-                        <td><p class="text-break">{{ tx_hash }}</p></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="table-responsive-xl">
+            <div class="center">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>{{ price }}</td>
+                        </tr>
+                        <tr>
+                            <th>Amount</th>
+                            <td>{{ amount }}</td>
+                        </tr>
+                        <tr>
+                            <th>TX Hash</th>
+                            <td><p class="text-break">{{ tx_hash }}</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <a href="{% url 'main:menu'%}" type="button" class="btn btn-secondary btn-block">Menu</a>
