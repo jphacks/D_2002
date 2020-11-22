@@ -38,10 +38,17 @@ def menu(request):
     
     if status == 'Locked':
         price = contract_manager.get_price()
+        product = Product.objects.last()
 
+    
         params = {
             'status': status,
             'price': price,
+            'name' : product.name,
+            'amount' : product.amount,
+            'intro': product.intro,
+            'image' : product.image,
+            'tx_hash': product.tx_hash,
         }
     else:
         params = {
