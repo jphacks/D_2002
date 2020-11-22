@@ -35,18 +35,18 @@
         <li>
           <a class="nav-item nav-link" href="#">Log-out</a>
         </li>
-        <li>
-          <a class="nav-item nav-link" href="{% url 'main:menu' %}">Menu</a>
-        </li>
-        <li>
-          <a class="nav-item nav-link" href="#">Chat-List</a>
-        </li>
         {% else %}
         <li>
           <a class="nav-item nav-link" href="#">Sign-up or Log-in</a>
         </li>
         <li>
+          <a class="nav-item nav-link" href="{% url 'main:menu' %}">Menu</a>
+        </li>
+        <li>
           <a class="nav-item nav-link" href="{% url 'main:history' %}">Sales History</a>
+        </li>
+        <li>
+          <a class="nav-item nav-link" href="{% url 'main:product_register' %}">Menu</a>
         </li>
         {% endif %}
       </ul>
