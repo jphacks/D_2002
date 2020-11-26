@@ -1,22 +1,20 @@
-import os
-import time
+import io
 import json
+import os
 import subprocess
+import time
+import tkinter
+import urllib.request
 from threading import Thread
 
+import requests
+from PIL import Image, ImageTk
 from web3 import Web3
-from web3.logs import STRICT, IGNORE, DISCARD, WARN
+from web3.logs import DISCARD, IGNORE, STRICT, WARN
 from web3.middleware import geth_poa_middleware
 
 from control import servo_lock, servo_unlock
-
-import tkinter
-from PIL import Image, ImageTk
-
-import urllib.request
-import io
-import requests
-import json
+from senser import get_data
 
 
 is_locked = True
@@ -37,6 +35,7 @@ def show_image():
     item = canvas.create_image(0, 0, image=show_img, anchor=tkinter.NW)
     root.mainloop()
 
+
 def test_play_voice(text):
     open_jtalk = ['open_jtalk']
     mech = ['-x', '/var/lib/mecab/dic/open-jtalk/naist-jdic']
@@ -49,11 +48,10 @@ def test_play_voice(text):
         aplay = ['aplay', '-q', 'output.wav']
         wr = subprocess.Popen(aplay)
         wr.wait()
-        time.sleep(5)
 
 
 def play_voice():
-    global intro_text
+    global intro_text, is_detect, is_locked
 
     open_jtalk = ['open_jtalk']
     mech = ['-x', '/var/lib/mecab/dic/open-jtalk/naist-jdic']
@@ -61,18 +59,29 @@ def play_voice():
     speed = ['-r', '1.0']
     outwav = ['-ow', 'output.wav']
     cmd = open_jtalk + mech + htsvoice + speed + outwav
+    pre_text = ''
+    
     while True:
         try:
-            if intro_text:
-                print(intro_text)
-                subprocess.run(cmd, input=intro_text.encode())
-                aplay = ['aplay', '-q', 'output.wav']
-                wr = subprocess.Popen(aplay)
-                wr.wait()
+            if is_detect:
+                if pre_text != intro_text:
+                    print(intro_text)
+                    pre_text = intro_text
+                    subprocess.run(cmd, input=intro_text.encode())
+                if intro_text and is_locked:
+                    aplay = ['aplay', '-q', 'output.wav']
+                    wr = subprocess.Popen(aplay)
+                    wr.wait()
         except Exception as e:
             print(e)
-        time.sleep(3)
 
+
+def get_sensor_data():
+    global is_detect
+    
+    while True:
+        is_detect = get_data()
+        time.sleep(2)
 
 def get_contract_address():
     global canvas, item, show_img, intro_text
@@ -205,8 +214,11 @@ def main():
     thread3 = Thread(target=play_voice)
     thread3.start()
     
-    thread4 = Thread(target=get_event)
+    thread4 = Thread(target=get_sensor_data)
     thread4.start()
+    
+    thread5 = Thread(target=get_event)
+    thread5.start()
 
 
 if __name__ == '__main__':

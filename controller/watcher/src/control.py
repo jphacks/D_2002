@@ -3,7 +3,7 @@ import time #スリープ関数用．必須じゃない．
 import RPi.GPIO as GPIO #GPIO用のライブラリ
 
 
-PIN = 18    # サーボモータの信号線を接続したGPIO番号の設定
+PIN = 4    # サーボモータの信号線を接続したGPIO番号の設定
 GPIO.setmode(GPIO.BCM)    # ポート番号の指定方法をGPIO番号に指定
 GPIO.setup(PIN, GPIO.OUT)    # GPIOを出力に設定
 servo = GPIO.PWM(PIN, 50)    # PWMの周波数を50に設定
