@@ -43,7 +43,7 @@ def menu(request):
     
         params = {
             'status': status,
-            'price': price,
+            'price': product.price,
             'name' : product.name,
             'amount' : product.amount,
             'intro': product.intro,
