@@ -75,6 +75,19 @@ Sellers can receive the payment safely.
 ![architecture](./docs/physical_architecture2.jpeg)
 ![box component](./docs/box_component.jpeg)
 
+#### Single Board Computers
+- ODROID: Work as web server and blockchain node
+- Raspberry Pi: Work as controller and blockchain node
+
+#### Containers
+- Django(Web App): Run web app
+- Nginx(Proxy server): Work as proxy server
+- Go Ethereum(Blockchain): Run blockchain
+- Python(Controller): Control the IoT Box
+
+#### Unlock Flow
+For example, when customer operate "unlock" from the web app, it connects to the web app container through the proxy server, and then changes the blockchain information from web container. The changes are also shared the blockchain on the raspberry pi through the proxy server. The changes are monitored by the controller container, then it will open the IoT Box accordingly.
+
 ### 活用した技術
 ### Technologies We Used
 - Blockchain
@@ -112,6 +125,8 @@ Sellers can receive the payment safely.
         - Self-made program
             - Python: Programing language
             - Web3: Python library for interacting with Ethereum
+    - Synthetic Voice Advertisement
+        - Open JTalk: Japanese text-to-speech software
     - Environment Setup
         - Docker: Platform of container virtualization
         - Docker-compose: Orchestration tool for Docker
