@@ -1,3 +1,7 @@
 Django == 2.2.4
-web3
+django-bootstrap4==1.1.1
+django-stdimage==5.1.1
+djangorestframework
+Pillow==7.2.0
 uwsgi
+web3

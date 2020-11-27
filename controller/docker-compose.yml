@@ -5,15 +5,25 @@ services:
     build: ./watcher
     volumes:
       - ./watcher:/work
+      - ./watcher/src/voices:/usr/share/hts-voice/
+      - /tmp/.X11-unix:/tmp/.X11-unix
       - $HOME/.Xauthority:/root/.Xauthority
+      - /run/user/1000/pulse/native:/pulse/native
+      - $HOME/.config/pulse/cookie:/pulse/cookie
+      - ./watcher/conf/client.conf:/root/.config/pulse/client.conf
+      - ./watcher/conf/default.pa:/root/.pulse/default.pa
     command: python3 watch.py
-    network_mode: "host"
+    #network_mode: host
     environment:
-      - DISPLAY=$DISPLAY:0
+      - DISPLAY=:0.0
+      - PULSE_SERVER=/pulse/native
+      - PULSE_COOKIE=/pulse/cookie
+    # devices:
+    #   - /dev/snd:/dev/snd
     privileged: true
     depends_on:
       - geth
-      
+
   geth:
     container_name: "geth"
     build: ./geth
@@ -24,7 +34,7 @@ services:
       - '8545:8545'
       - '8546:8546'
     command: >
-      geth --datadir /geth/data --syncmode 'full' --port 30303
+      geth --datadir /geth/data --syncmode fast --port 30303
       --http --http.addr '0.0.0.0' --http.corsdomain '*'
       --http.vhosts '*' --http.port 8545 --http.api 'personal,eth,net,web3'
       --ws --ws.addr "0.0.0.0" --ws.api 'eth,web3,personal,net'

@@ -1,4 +1,6 @@
 !.gitkeep
 /geth/data/*
 genesis*.json
-watcher/src/contracts/tx_hash.txt
+/watcher/src/contracts/tx_hash.txt
+/watcher/src/voices/*
+/watcher/src/output.wav
