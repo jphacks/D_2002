@@ -179,6 +179,8 @@ For example, when customer operate "unlock" from the web app, it connects to the
 - Takeaki Matsunaga wrote [web (on the ODROID-N2)](https://github.com/jphacks/D_2002/tree/master/server/web).  
 #### Designing the Lock Mechanism
 - Seiya Tanaka wrote [README.md (hardware)](https://github.com/jphacks/D_2002/tree/master/hardware#ロック機構の開発).  
+#### Human sensors and speakers
+- Seiya Tanaka wrote [README.md (hardware)](https://github.com/jphacks/D_2002/tree/master/hardware#呼び込み機能付与). 
 
 ### 開発のタイムライン（履歴）
 ### Development Timeline (History)
