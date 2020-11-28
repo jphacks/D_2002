@@ -1,7 +1,6 @@
 # CHAINED BOX
 ### 昨年の組織委員長の「グローバルに戦えるところを次の目標にしてほしい」というコメントを受けて，英語で記載します．
 #### Considering the comment from last year's chair "I want you to gain international competitiveness as your next goal.", we decided to write this README.md in English.
-### 日本語版は[こちら](https://github.com/jphacks/D_2002/wiki/README%5B日本語%5D)
 - Wiki (Github)  
     - [![wiki](https://img.shields.io/badge/wiki-written-green)](https://github.com/jphacks/D_2002/wiki)
 - CI (Travis)
@@ -189,3 +188,4 @@ For example, when customer operate "unlock" from the web app, it connects to the
 #### Applied Contents from our Research
 * Blockchain
     - Substitute  a blockchain for a relational database
+### 日本語版は[こちら](https://github.com/jphacks/D_2002/wiki/README%5B日本語%5D)
