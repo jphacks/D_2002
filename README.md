@@ -13,6 +13,8 @@
 <!-- [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk) -->
 
 ![eye-catching](./docs/eye-catching.jpeg)
+## Award Day Pitch Video 
+[![award_day_pitch](http://img.youtube.com/vi/4DTP15h7cm0/0.jpg)](http://www.youtube.com/watch?v=4DTP15h7cm0 "award_day_pitch")
 ## 90 Sec. Pitch Video 
 [![JPHACKS 90 Sec. Pitch](http://img.youtube.com/vi/wg6M0W5arro/0.jpg)](http://www.youtube.com/watch?v=wg6M0W5arro "JPHACKS 90 Sec. Pitch")
 ## Promotion Video
@@ -29,52 +31,73 @@
 ![product](./docs/product.jpeg)
 ### 背景(製品開発のきっかけ、課題等） 
 ### Background
-![architecture](./docs/honesty_stand.jpeg)
-Honesty stands are unmanned stores. As you can guess form the word “honesty”, the buyers are expected to be “honest”. But sometimes, the merchandises or the cash from the sales are stolen by dishonest thieves. The result shouldn't be a surprise to anyone. Billy Joel sings "Honesty is a such lonely word. Everyone is so untrue". ***Protecting the merchandises and the cash with existing vending machines is one solution, but the price of them is high. Therefore, buying an existing vending machine doesn't pay off in the end. Then, we propose a simple and low-cost smart IoT box named “Chained Box” for small business.***
+![background1](./docs/en_background1.jpeg)
+Honesty stands are unmanned stores. As you can guess form the word “honesty”, the buyers are expected to be “honest”. But sometimes, the merchandises or the cash from the sales are stolen by dishonest thieves. The result shouldn't be a surprise to anyone. Billy Joel sings "Honesty is a such lonely word. Everyone is so untrue".
+![background2](./docs/en_background2.jpeg)
+ ***Protecting the merchandises and the cash with existing vending machines is one solution, but the price of them is high. Therefore, buying an existing vending machine doesn't pay off in the end. Then, we propose a low-cost smart IoT box named “Chained Box” for small business.***
 ### 製品説明（具体的な製品の説明）
 ### Product Description
-Chained Box is a smart IoT box controlled by a blockchain. It enables to protect the merchandises and the sales.
+![background3](./docs/en_background3.jpeg)
+Chained Box is a smart IoT box controlled by a blockchain. 
+It can be used as a low-cost vending machine.
 Buyers can pay for the merchandise with electric payment (crypto-currency).
 Sellers can receive the payment safely.
-And, since the sales history is stored in the blockchain, the sellers are free from bookkeeping.
-They can focus more efficiently on their main business. 
 
 ### 解決出来ること
 ### Solutions
-#### 1. Chained Box is simple and cheap.
-- Because...
-    - There is no need to equip complex mechanisms to receive cash.
-    - There is no need to maintain a secure central server. (And the server needs high-costs.)
-    - It is designed for individuals or small business.
-#### 2. Chained Box protects the merchandises and cash from dishonest thieves.
-#### 3. Chained Box stores all the past transactions. You can check the sales history.
+![solution](./docs/en_background4.jpeg)
+#### 1. Chained Box is cheap.
+- The price is extremely low compare to existing vending machines. So, it is easy to introduce Chained Box to your business.  
+#### 2. Chained Box can promote your product with synthetic voice.
+- You can get more customers compare to existing vending machines.
 
 ### 使用方法
 ### How to Use
-![how to use](./docs/how_to_use.jpeg)
-You can use Chained Box as following steps.  
-#### 1. Scan the QR code. Then access our web page. (Chrome is strongly recommended.)  
-#### 2. Pay for the merchandise. Then the box is unlocked. Get your item.
+#### Seller (e.g. farmer)
+![how to use1](./docs/how_to_use1.jpeg)
+#### Buyer
+![how to use2](./docs/how_to_use2.jpeg)
 
 ### なぜブロックチェーンを使うのか
 ### Why Blockchain
-#### 1. Fault Tolerance
-- Blockchains are maintained by a peer-to-peer network. The system keeps running even if one node goes down.
-#### 2. Low-Cost Electronic Payment Function
+#### 1. Low-Cost Electronic Payment Function
 - The electronic payment function can be implemented at low cost by the blockchain. The server/client model needs a secure central server. And the server needs high-costs.
+#### 2. Fault Tolerance
+- Blockchains are maintained by a peer-to-peer network. The system keeps running even if one node goes down.
 
+### 特長と将来の展望
+### Advantages and Future Work
+![advantages](./docs/advantages.jpeg)
 
-### 特長
-### Advantages
-![architecture](./docs/advantages.jpeg)
-#### 1. Data Security
-- Blockchains are difficult to change maliciously. 
-#### 2. Electric Payment
-- You can pay with crypto-currency.
-- A bank account or cash are not needed.
-#### 3. Automation
-- Smart contracts (as known as the feature of Ethereum) execute a predefined job when a predefined event happens.
-- You can see all the past transactions, since the transactions are stored in blocks.  
+## 開発
+## Development
+### システムの構成
+### System Architecture
+![architecture](./docs/system_architecture.jpeg)
+![architecture](./docs/physical_architecture.jpeg)
+![architecture](./docs/physical_architecture2.jpeg)
+![box component](./docs/box_component.jpeg)
+
+#### Single Board Computers
+- ODROID: Work as web server and blockchain node
+- Raspberry Pi: Work as controller and blockchain node
+
+#### Containers
+- Django(Web App): Run web app
+- Nginx(Proxy server): Work as proxy server
+- Go Ethereum(Blockchain): Run blockchain
+- Python(Controller): Control the IoT Box
+
+#### Unlock Flow
+For example, when customer operate "unlock" from the web app, it connects to the web app container through the proxy server, and then changes the blockchain information from web container. The changes are also shared the blockchain on the raspberry pi through the proxy server. The changes are monitored by the controller container, then it will open the IoT Box accordingly.
+
+### 活用した技術
+### Technologies We Used
+- Blockchain
+- IoT with Single Board Computers
+- Web Framework
+- Virtualization with Containers
+- Continuos Integration Tool
 
 ### 注力したこと（こだわり等）
 ### Focused Points
@@ -91,42 +114,6 @@ You can use Chained Box as following steps.
 #### 6. Make our Perspective Global
 - We made this README.md and the 90 sec pitch video in English to let the world know our product.
 
-### 今後の展望
-### Future Work
-- Browsing the sales history
-- Notification of out of stock to sellers/customers
-- Promoting new arrivals to customers via push notification
-- Monitoring open/close of the lid, automatically locking
-
-
-### その他のユースケース
-### Other Use Cases
-![architecture](./docs/use_cases.jpeg)
-#### 1. Delivery
-#### 2. Sharing
-#### 3. Traceability
-
-
-## 開発
-## Development
-### システムの構成
-### System Architecture
-![architecture](./docs/system_architecture.jpeg)
-### 物理構成
-### Physical Architecture
-![architecture](./docs/physical_architecture.jpeg)
-### ボックスの構成
-### Box Component
-![box component](./docs/box_component.jpeg)
-
-### 活用した技術
-### Technologies We Used
-- Blockchain
-- IoT with Single Board Computers
-- Web Framework
-- Virtualization with Containers
-- Continuos Integration Tool
-
 #### フレームワーク・ライブラリ・モジュール
 #### Frameworks, Libraries, Modules
 * Software
@@ -141,6 +128,8 @@ You can use Chained Box as following steps.
         - Self-made program
             - Python: Programing language
             - Web3: Python library for interacting with Ethereum
+    - Synthetic Voice Advertisement
+        - Open JTalk: Japanese text-to-speech software
     - Environment Setup
         - Docker: Platform of container virtualization
         - Docker-compose: Orchestration tool for Docker

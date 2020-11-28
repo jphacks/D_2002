@@ -4,17 +4,42 @@
 
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 {% if  status == 'Locked' %}
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <img src="{% static 'image/lock.png' %}" class="img-fluid" alt="Lock">
-        </div>
-        <div class="col-md-6 mx-auto">
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <img src="{{ MEDIA_URL }}{{ image }}" class="img-fluid" alt="product">
+    </div>
+    <div class="col-md-6 mx-auto">
 
-            <div class="text-center h4 alert alert-warning" role="alert">Status: Locked</div>
-            <div class="text-center h4 alert alert-info" role="alert">Price: {{ price }} wei</div>
+        <div class="text-center h4 alert alert-warning" role="alert">Status: Locked</div>
+        
+        <div class="table-responsive-xl">
+            <div class="center">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>{{ price }}</td>
+                        </tr>
+                        <tr>
+                            <th>Amount</th>
+                            <td>{{ amount }}</td>
+                        </tr>
+                        <tr>
+                            <th>TX Hash</th>
+                            <td><p class="text-break">{{ tx_hash }}</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <a href="{% url 'main:unlock'%}" type="button" class="btn btn-success btn-block">Unlock the Box</a>
         </div>
+        
     </div>
+</div>
 {% elif  status == 'Unlocked' %}
     <div class="row">
         <div class="col-md-6 mx-auto">
